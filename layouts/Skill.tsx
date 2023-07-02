@@ -7,15 +7,15 @@ import SkillSet from "../components/SkillSet";
 const frontendSkills = [
   { label: "React & React Native", percentage: 100 },
   { label: "JavaScript & Typescript", percentage: 100 },
-  { label: "HTML & CSS", percentage: 90 },
-  { label: "UX & UI", percentage: 90 },
+  { label: "HTML & CSS", percentage: 95 },
+  { label: "UX & UI", percentage: 95 },
 ];
 
 const backendSkills = [
   { label: "API Development", percentage: 100 },
   { label: "Database Management", percentage: 100 },
-  { label: "Cloud Hosting", percentage: 90 },
-  { label: "Security and Authentication", percentage: 90 },
+  { label: "Cloud Hosting", percentage: 95 },
+  { label: "Security and Authentication", percentage: 95 },
 ];
 
 const Skill = () => {
