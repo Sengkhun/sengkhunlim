@@ -26,7 +26,7 @@ function About() {
             <span>Company worked</span>
           </div>
         </div>
-        <button>
+        <button title="Download">
           Download CV <FiDownload className="animate-down" />
         </button>
       </div>

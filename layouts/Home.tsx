@@ -6,6 +6,10 @@ import ProfilePicture from "../public/images/profile-picture.png";
 import ProfilePictureSquare from "../public/images/profile-picture-square.png";
 
 const Home = () => {
+  const onContactClick = () => {
+    window.location.href = "#contact";
+  };
+
   return (
     <div id="home" className="section-container home-section">
       <div className="container">
@@ -18,7 +22,7 @@ const Home = () => {
               High level experience in web and mobile development knowledge,
               producing high quality work.
             </p>
-            <button>
+            <button onClick={onContactClick}>
               Contact Me <AiOutlineSend />
             </button>
           </div>

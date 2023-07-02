@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { CSSTransition } from "react-transition-group";
+import React from "react";
 import { IconBaseProps } from "react-icons/";
 
 interface Props {
@@ -11,11 +10,8 @@ interface Props {
 }
 
 const Label = (props: Props) => {
-  // states
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <div className="label-container">
+    <div className="label-container" title={props.title}>
       {props.icon}
       <div className="text-container">
         <span className="title">{props.title}</span>

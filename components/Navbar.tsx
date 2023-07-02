@@ -1,12 +1,11 @@
-import _ from "lodash";
 import React, { useState, useEffect, useRef } from "react";
+import { throttle } from "lodash";
 import {
   AiOutlineClose,
   AiOutlineHome,
   AiOutlineInfoCircle,
   AiOutlineSolution,
   AiOutlineTrophy,
-  AiOutlinePlayCircle,
   AiOutlineSetting,
   AiOutlineSend,
 } from "react-icons/ai";
@@ -21,7 +20,6 @@ const navbarOptions = [
   { title: "About", href: "#about", icon: <AiOutlineInfoCircle /> },
   { title: "Skills", href: "#skill", icon: <AiOutlineSolution /> },
   { title: "Qualification", href: "#qualification", icon: <AiOutlineTrophy /> },
-  // { title: "Media", href: "#media", icon: <AiOutlinePlayCircle /> },
   { title: "Tools", href: "#tool", icon: <AiOutlineSetting /> },
   { title: "Contact", href: "#contact", icon: <AiOutlineSend /> },
 ];
@@ -42,7 +40,7 @@ const Navbar = () => {
   // refs
   const navRef = useRef<HTMLDivElement>(null);
   const navMobileRef = useRef<HTMLDivElement>(null);
-  const ArrowTopRef = useRef<HTMLDivElement>(null);
+  const ArrowTopRef = useRef<HTMLAnchorElement>(null);
 
   const onOpenMobileNav = () => {
     if (navMobileRef.current) {
@@ -115,7 +113,7 @@ const Navbar = () => {
     // handle initial active nav section
     handleActiveNavSection(window.pageYOffset, listSections);
 
-    window.onresize = function () {
+    window.onresize = throttle(() => {
       const currentWidth = window.innerWidth;
       if (currentWidth < BREAK_POINTS.md) {
         setBreakpoint("sm");
@@ -133,11 +131,11 @@ const Navbar = () => {
 
       // get new list of sections' size and id
       listSections = handleListSections();
-    };
+    }, 200);
 
     var minHeighToDisplay = 300;
     var prevScrollpos = window.pageYOffset;
-    window.onscroll = function () {
+    window.onscroll = throttle(() => {
       const currentScrollPos = window.pageYOffset;
       if (navRef) {
         const navHeight = navRef.current?.clientHeight || 0;
@@ -179,7 +177,7 @@ const Navbar = () => {
           }
         }
       }
-    };
+    }, 200);
 
     return () => {
       window.onscroll = null;
@@ -285,7 +283,12 @@ const Navbar = () => {
       </div>
 
       {/* arrow that bring to the top of the page */}
-      <a className="arrow-top-btn fade-out" href="#home" ref={ArrowTopRef}>
+      <a
+        className="arrow-top-btn fade-out"
+        href="#home"
+        ref={ArrowTopRef}
+        title="Back to Top"
+      >
         <BiArrowToTop />
       </a>
     </>

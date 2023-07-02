@@ -76,7 +76,7 @@ function Contact() {
                   <label>Message</label>
                 </div>
               </div>
-              <button type="submit">
+              <button type="submit" title="Submit">
                 Send Message <AiOutlineSend />
               </button>
             </form>

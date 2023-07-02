@@ -105,6 +105,7 @@ const Qualification = () => {
         <div className="tab-container">
           {qualificationCategories.map((qualification, idx) => (
             <div
+              title={qualification.label}
               className={`tab-item ${activeTab === idx && "active"}`}
               key={qualification.label}
               onClick={() => setActiveTab(idx)}
