@@ -1,0 +1,12 @@
+// bootstrap scss
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// local scss
+@import "variables";
+@import "mixins";
+@import "functions";
+@import "components";
+@import "typography";
+@import "layouts";
+
+@import "globals";
