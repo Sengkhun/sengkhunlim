@@ -1,41 +1,86 @@
 import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
-import {
-  MdWorkOutline,
-  MdOutlineBackHand,
-  MdOutlineSchool,
-} from "react-icons/md";
+import { MdWorkOutline, MdOutlineSchool } from "react-icons/md";
 import { FiCalendar } from "react-icons/fi";
 import { FaCircle } from "react-icons/fa";
+import { PiMedal } from "react-icons/pi";
 
 const qualificationCategories = [
   { label: "Work", icon: <MdWorkOutline /> },
   { label: "Education", icon: <MdOutlineSchool /> },
-  { label: "Volunteer", icon: <MdOutlineBackHand /> },
+  { label: "Awards", icon: <PiMedal /> },
 ];
 
 const workTimeline = [
-  { title: "Work Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
-  { title: "Tech Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
-  { title: "Tech Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
-  { title: "Tech Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
+  {
+    title: "Full Stack Developer",
+    subtitle: "Bigwig Advertising & Digital, Australia",
+    year: "July 2021 - present",
+  },
+  {
+    title: "Full Stack Project Lead Developer",
+    subtitle: "TK CAPITAL PLC., Cambodia",
+    year: "Aug 2018 - Jan 2020",
+  },
+  {
+    title: "Backend Developer",
+    subtitle: "GoSoccer, Cambodia",
+    year: "2017 - 2019",
+  },
+  {
+    title: "Full Stack Developer",
+    subtitle: "Reaksmey Furniture, Cambodia",
+    year: "2016 - 2019",
+  },
 ];
 
 const educationTimeline = [
-  { title: "Tech Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
-  { title: "Tech Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
-  { title: "Tech Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
-  { title: "Tech Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
+  {
+    title: "Master's degree in Information Technology",
+    subtitle: "University of South Australia, Australia",
+    year: "Jul 2020 -  Nov 2021",
+  },
+  {
+    title: "Graduate Certificate in Information Technology",
+    subtitle: "University of South Australia, Australia",
+    year: "Mar 2020 - Jul 2020",
+  },
+  {
+    title: "Bachelor's degree in Computer Science",
+    subtitle: "Paragon International Univeristy, Cambodia",
+    year: "2015 - 2019",
+  },
+  {
+    title: "Android Application Development Course",
+    subtitle: "Cambodia-Korea Cooperation Center, Cambodia",
+    year: "Apr - Jun 2014",
+  },
 ];
 
-const volunteerTimeline = [
-  { title: "Volunteer Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
-  { title: "Tech Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
-  { title: "Tech Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
-  { title: "Tech Mentor", subtitle: "Smart Axiata, Cambodia", year: 2018 },
+const awardTimeline = [
+  {
+    title: "Top 5% student in the Master's degree program",
+    subtitle: "University of South Australia, Australia",
+    year: "Mar 2022",
+  },
+  {
+    title: "Honor Student Award",
+    subtitle: "Paragon International Univeristy, Cambodia",
+    year: "Jul 2019",
+  },
+  {
+    title: "Winner of SmartStart Cycle 1 Grand Final",
+    subtitle: "SMART Axiata, Cambodia",
+    year: "Jan 2018",
+  },
+  {
+    title: "Winner of the SmartStart Young Innovator Program",
+    subtitle: "Smart Axiata, Cambodia",
+    year: "May 2017",
+  },
 ];
 
-const allTimeline = [workTimeline, educationTimeline, volunteerTimeline];
+const allTimeline = [workTimeline, educationTimeline, awardTimeline];
 
 const Qualification = () => {
   // states

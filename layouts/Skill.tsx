@@ -1,21 +1,21 @@
 import React from "react";
-import { FaLaptopCode, FaDev } from "react-icons/fa";
+import { FaLaptopCode } from "react-icons/fa";
 import { BiCodeBlock } from "react-icons/bi";
 
 import SkillSet from "../components/SkillSet";
 
 const frontendSkills = [
   { label: "React & React Native", percentage: 100 },
-  { label: "JavaScript", percentage: 95 },
-  { label: "HTML", percentage: 90 },
-  { label: "CSS", percentage: 90 },
+  { label: "JavaScript & Typescript", percentage: 100 },
+  { label: "HTML & CSS", percentage: 90 },
+  { label: "UX & UI", percentage: 90 },
 ];
 
 const backendSkills = [
-  { label: "ExpressJS", percentage: 100 },
-  { label: "GraphQL", percentage: 90 },
-  { label: "JavaScript", percentage: 95 },
-  { label: "HTML", percentage: 90 },
+  { label: "API Development", percentage: 100 },
+  { label: "Database Management", percentage: 100 },
+  { label: "Cloud Hosting", percentage: 90 },
+  { label: "Security and Authentication", percentage: 90 },
 ];
 
 const Skill = () => {
@@ -29,15 +29,15 @@ const Skill = () => {
           <SkillSet
             icon={<BiCodeBlock className="main-icon" />}
             title="Frontend Development"
-            subtitle="More than 3 years"
+            subtitle="More than 4 years"
             skills={frontendSkills}
           />
 
           {/* backend */}
           <SkillSet
             icon={<FaLaptopCode className="main-icon" />}
-            title="Backend Development"
-            subtitle="More than 3 years"
+            title="Backend & Dev Ops"
+            subtitle="More than 4 years"
             skills={backendSkills}
           />
 

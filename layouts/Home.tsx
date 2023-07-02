@@ -19,8 +19,8 @@ const Home = () => {
             <h1 className="section-title">Hi, I&apos;m SengKhun</h1>
             <h6 className="section-subtitle">Full stack developer</h6>
             <p className="description">
-              High level experience in web and mobile development knowledge,
-              producing high quality work.
+              Extensive expertise in web and mobile development, consistently
+              delivering high-quality results.
             </p>
             <button onClick={onContactClick}>
               Contact Me <AiOutlineSend />
