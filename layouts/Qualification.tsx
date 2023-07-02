@@ -92,7 +92,7 @@ const Qualification = () => {
         <div className="qualification-timeline">
           {timeline.map((item: any, idx: any) =>
             idx % 2 === 0 ? (
-              <>
+              <div key={item.title + idx}>
                 <div className="qualification-data">
                   <span className="qualification-title">{item.title}</span>
                   <span className="qualification-subtitle">
@@ -112,9 +112,9 @@ const Qualification = () => {
                 </div>
 
                 <div></div>
-              </>
+              </div>
             ) : (
-              <>
+              <div key={item.title + idx}>
                 <div></div>
                 <div className="divider">
                   <FaCircle />
@@ -132,7 +132,7 @@ const Qualification = () => {
                     <span>{item.year}</span>
                   </div>
                 </div>
-              </>
+              </div>
             )
           )}
         </div>
@@ -152,7 +152,7 @@ const Qualification = () => {
             <div
               title={qualification.label}
               className={`tab-item ${activeTab === idx && "active"}`}
-              key={qualification.label}
+              key={qualification.label + idx}
               onClick={() => setActiveTab(idx)}
             >
               {qualification.icon}

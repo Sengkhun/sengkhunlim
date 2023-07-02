@@ -21,6 +21,19 @@ function MyApp({ Component, pageProps }: AppProps) {
           crossOrigin="anonymous"
         /> */}
       </Head>
+
+      {/* <!-- Google tag (gtag.js) --> */}
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-QNL6FQWWHW" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-QNL6FQWWHW');
+        `}
+      </Script>
+
       <Script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
