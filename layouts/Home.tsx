@@ -1,12 +1,20 @@
 import React from "react";
 import Image from "next/image";
 import { AiOutlineSend } from "react-icons/ai";
+import ReactGA from "react-ga4";
 
 import ProfilePicture from "../public/images/profile-picture.png";
 import ProfilePictureSquare from "../public/images/profile-picture-square.png";
+import { GA_CATEGORIES } from "../public/constant";
 
 const Home = () => {
   const onContactClick = () => {
+    // send GA event
+    ReactGA.event({
+      category: GA_CATEGORIES.buttonClick,
+      action: "Contact Me",
+    });
+
     window.location.href = "#contact";
   };
 

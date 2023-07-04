@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import ReactGA from "react-ga4";
 
 import htmlLogo from "../public/logos/html5-logo.png";
 import cssLogo from "../public/logos/css-logo.png";
@@ -12,6 +13,8 @@ import typescriptLogo from "../public/logos/typescript-logo.png";
 import gitlabLogo from "../public/logos/gitlab-ci-cd-logo.png";
 import dockerLogo from "../public/logos/docker-logo.png";
 import digitalOceanLogo from "../public/logos/digital-ocean-logo.png";
+
+import { GA_CATEGORIES } from "../public/constant";
 
 const tools = [
   { title: "HTML", imgSrc: htmlLogo, alt: "HTML logo" },
@@ -68,6 +71,14 @@ const tools = [
 ];
 
 const Tool = () => {
+  const onIconClick = (title: string) => {
+    // send GA event
+    ReactGA.event({
+      category: GA_CATEGORIES.iconClick,
+      action: title,
+    });
+  };
+
   return (
     <div id="tool" className="section-container tool-section">
       <div className="container">
@@ -83,6 +94,7 @@ const Tool = () => {
               href={item.link}
               target={item.link ? "_blank" : "_self"}
               rel="noopener noreferrer"
+              onClick={() => onIconClick(item.title)}
             >
               <Image src={item.imgSrc} alt={item.alt} />
             </a>

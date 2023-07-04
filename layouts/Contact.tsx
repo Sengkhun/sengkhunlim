@@ -1,11 +1,24 @@
 import React from "react";
 import { FiPhone, FiMail, FiMapPin, FiLinkedin } from "react-icons/fi";
 import { AiOutlineSend } from "react-icons/ai";
+import ReactGA from "react-ga4";
 
 import Label from "../components/Label";
-import CONSTANT from "../public/constant";
 
-function Contact() {
+import CONSTANT from "../public/constant";
+import { GA_CATEGORIES } from "../public/constant";
+
+const Contact = () => {
+  const onSubmitClick = (e: any) => {
+    e.preventDefault();
+
+    // send GA event
+    ReactGA.event({
+      category: GA_CATEGORIES.buttonClick,
+      action: "Send Message",
+    });
+  };
+
   return (
     <div id="contact" className="section-container contact-section">
       <div className="container">
@@ -53,7 +66,7 @@ function Contact() {
 
           {/* right panel */}
           <div className="col-12 col-md-7 right-panel">
-            <form>
+            <form onSubmit={onSubmitClick}>
               <div className="row">
                 <div className="form-floating col-12 col-md-6">
                   <input type="text" className="form-control" />
@@ -76,7 +89,7 @@ function Contact() {
                   <label>Message</label>
                 </div>
               </div>
-              <button type="submit" title="Submit">
+              <button type="submit" title="Submit" onClick={onSubmitClick}>
                 Send Message <AiOutlineSend />
               </button>
             </form>
@@ -85,6 +98,6 @@ function Contact() {
       </div>
     </div>
   );
-}
+};
 
 export default Contact;

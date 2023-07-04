@@ -12,8 +12,9 @@ import {
 import { IoMdMore } from "react-icons/io";
 import { RiMenu3Fill } from "react-icons/ri";
 import { BiArrowToTop } from "react-icons/bi";
+import ReactGA from "react-ga4";
 
-import { BREAK_POINTS } from "../public/constant";
+import { BREAK_POINTS, GA_CATEGORIES } from "../public/constant";
 
 const navbarOptions = [
   { title: "Home", href: "#home", icon: <AiOutlineHome /> },
@@ -50,12 +51,19 @@ const Navbar = () => {
     }
   };
 
-  const onCloseMobileNav = () => {
+  const onCloseMobileNav = (title: string) => {
     if (navMobileRef.current) {
       const height = navMobileRef.current.clientHeight + 10; // shadow height 10px
       navMobileRef.current.style.top = `-${height}px`;
       navMobileRef.current.style["z-index"] = -1;
     }
+
+    // send GA event
+    ReactGA.event({
+      category: GA_CATEGORIES.navClick,
+      action: title,
+      label: "Top menu navigation",
+    });
   };
 
   const handleListSections = () => {
@@ -185,6 +193,23 @@ const Navbar = () => {
     };
   }, []);
 
+  const onNavClick = (title: string) => {
+    // send GA event
+    ReactGA.event({
+      category: GA_CATEGORIES.navClick,
+      action: title,
+      label: "Top menu navigation",
+    });
+  };
+
+  const onBackToTopClick = () => {
+    // send GA event
+    ReactGA.event({
+      category: GA_CATEGORIES.buttonClick,
+      action: "Back to Top",
+    });
+  };
+
   return (
     <>
       <div className="nav-parent-container">
@@ -201,6 +226,7 @@ const Navbar = () => {
                       className={
                         currentSection?.id == item.href ? "active" : ""
                       }
+                      onClick={() => onNavClick(item.title)}
                     >
                       {item.title}
                     </a>
@@ -216,6 +242,7 @@ const Navbar = () => {
                       className={
                         currentSection?.id === item.href ? "active" : ""
                       }
+                      onClick={() => onNavClick(item.title)}
                     >
                       {item.title}
                     </a>
@@ -240,6 +267,7 @@ const Navbar = () => {
                           className={`dropdown-item ${
                             currentSection?.id === item.href ? "active" : ""
                           }`}
+                          onClick={() => onNavClick(item.title)}
                         >
                           {item.title}
                         </a>
@@ -261,7 +289,7 @@ const Navbar = () => {
         {currentBreakpoint == "sm" && (
           <div ref={navMobileRef} className="navbar-menu-container container">
             <div className="close-menu">
-              <AiOutlineClose onClick={onCloseMobileNav} />
+              <AiOutlineClose onClick={() => onCloseMobileNav("Close")} />
             </div>
             <ul className="navbar-menu">
               {navbarOptions.map((item, idx) => (
@@ -271,7 +299,7 @@ const Navbar = () => {
                   className={`nav-item ${
                     currentSection?.id === item.href ? "active" : ""
                   }`}
-                  onClick={onCloseMobileNav}
+                  onClick={() => onCloseMobileNav(item.title)}
                 >
                   {item.icon}
                   <span>{item.title}</span>
@@ -288,6 +316,7 @@ const Navbar = () => {
         href="#home"
         ref={ArrowTopRef}
         title="Back to Top"
+        onClick={onBackToTopClick}
       >
         <BiArrowToTop />
       </a>

@@ -4,6 +4,9 @@ import { MdWorkOutline, MdOutlineSchool } from "react-icons/md";
 import { FiCalendar } from "react-icons/fi";
 import { FaCircle } from "react-icons/fa";
 import { PiMedal } from "react-icons/pi";
+import ReactGA from "react-ga4";
+
+import { GA_CATEGORIES } from "../public/constant";
 
 const qualificationCategories = [
   { label: "Work", icon: <MdWorkOutline /> },
@@ -86,13 +89,23 @@ const Qualification = () => {
   // states
   const [activeTab, setActiveTab] = useState(0);
 
-  const renderTimeline = (timeline: any) => {
+  const onTabClick = (idx: number, label: string) => {
+    setActiveTab(idx);
+
+    // send GA event
+    ReactGA.event({
+      category: GA_CATEGORIES.tabClick,
+      action: label,
+    });
+  };
+
+  const renderTimeline = (timeline: any, timelineIdx: any) => {
     return (
-      <div className="qualification-timeline-container">
+      <div key={timelineIdx} className="qualification-timeline-container">
         <div className="qualification-timeline">
           {timeline.map((item: any, idx: any) =>
             idx % 2 === 0 ? (
-              <div key={item.title + idx}>
+              <div key={`${item.title} ${idx}`}>
                 <div className="qualification-data">
                   <span className="qualification-title">{item.title}</span>
                   <span className="qualification-subtitle">
@@ -114,7 +127,7 @@ const Qualification = () => {
                 <div></div>
               </div>
             ) : (
-              <div key={item.title + idx}>
+              <div key={`${item.title} ${idx}`}>
                 <div></div>
                 <div className="divider">
                   <FaCircle />
@@ -150,10 +163,10 @@ const Qualification = () => {
         <div className="tab-container">
           {qualificationCategories.map((qualification, idx) => (
             <div
+              key={`${qualification.label} ${idx}`}
               title={qualification.label}
               className={`tab-item ${activeTab === idx && "active"}`}
-              key={qualification.label + idx}
-              onClick={() => setActiveTab(idx)}
+              onClick={() => onTabClick(idx, qualification.label)}
             >
               {qualification.icon}
               <span>{qualification.label}</span>
@@ -163,7 +176,7 @@ const Qualification = () => {
 
         {/* timeline */}
         <SwipeableViews index={activeTab}>
-          {allTimeline.map((timeline) => renderTimeline(timeline))}
+          {allTimeline.map(renderTimeline)}
         </SwipeableViews>
       </div>
     </div>

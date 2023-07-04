@@ -27,6 +27,14 @@ export const BREAK_POINTS = {
   xxl: 1400,
 };
 
+export const GA_CATEGORIES = {
+  buttonClick: "Button Clicks",
+  tabClick: "Tab Clicks",
+  iconClick: "Icon Clicks",
+  linkClick: "Link Clicks",
+  navClick: "Nav Button Clicks",
+};
+
 export const MEDIA_SOURCES = [
   {
     image: imgGoSoccer,

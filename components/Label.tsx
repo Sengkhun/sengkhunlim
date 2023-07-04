@@ -1,5 +1,8 @@
 import React from "react";
 import { IconBaseProps } from "react-icons/";
+import ReactGA from "react-ga4";
+
+import { GA_CATEGORIES } from "../public/constant";
 
 interface Props {
   icon: React.ReactElement<IconBaseProps>;
@@ -10,6 +13,15 @@ interface Props {
 }
 
 const Label = (props: Props) => {
+  const onLinkClick = () => {
+    // send GA event
+    ReactGA.event({
+      category: GA_CATEGORIES.linkClick,
+      action: props.title,
+      label: props.href,
+    });
+  };
+
   return (
     <div className="label-container" title={props.title}>
       {props.icon}
@@ -20,6 +32,7 @@ const Label = (props: Props) => {
           href={props.href}
           target={props.newTab ? "_blank" : "_self"}
           rel="noopener noreferrer"
+          onClick={onLinkClick}
         >
           {props.subtitle}
         </a>

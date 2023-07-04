@@ -1,7 +1,18 @@
 import React from "react";
 import { FiDownload } from "react-icons/fi";
+import ReactGA from "react-ga4";
 
-function About() {
+import { GA_CATEGORIES } from "../public/constant";
+
+const About = () => {
+  const onDownloadClick = () => {
+    // send GA event
+    ReactGA.event({
+      category: GA_CATEGORIES.buttonClick,
+      action: "Download CV",
+    });
+  };
+
   return (
     <div id="about" className="section-container about-section">
       <div className="container">
@@ -26,12 +37,12 @@ function About() {
             <span>Company worked</span>
           </div>
         </div>
-        <button title="Download">
+        <button title="Download" onClick={onDownloadClick}>
           Download CV <FiDownload className="animate-down" />
         </button>
       </div>
     </div>
   );
-}
+};
 
 export default About;
