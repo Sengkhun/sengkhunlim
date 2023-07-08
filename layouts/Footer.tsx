@@ -31,7 +31,7 @@ const Footer = () => {
           {/* left section */}
           <section className="profile col col-12 col-md-4 col-lg-3">
             <h3>SengKhun</h3>
-            <span>Full stack developer</span>
+            <span>Full Stack Developer</span>
           </section>
 
           {/* middle section */}

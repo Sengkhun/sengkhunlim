@@ -2,7 +2,7 @@ import React from "react";
 import { FiDownload } from "react-icons/fi";
 import ReactGA from "react-ga4";
 
-import { GA_CATEGORIES } from "../public/constant";
+import CONSTANT, { GA_CATEGORIES } from "../public/constant";
 
 const About = () => {
   const onDownloadClick = () => {
@@ -11,6 +11,14 @@ const About = () => {
       category: GA_CATEGORIES.buttonClick,
       action: "Download CV",
     });
+
+    const link = document.createElement("a");
+    link.href = CONSTANT.cvLink;
+    link.download = CONSTANT.cvFilename;
+    link.target = "_blank"; // Open in a new tab
+    link.rel = "noopener noreferrer";
+
+    link.click();
   };
 
   return (

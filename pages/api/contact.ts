@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 
@@ -6,23 +7,32 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const { name, email, project } = req.body;
+    const { firstName, lastName, email, message } = req.body;
 
-    console.log(
-      "🚀 ~ file: contact.ts:10 ~ name:",
-      process.env.ENV,
-      process.env.NODE_ENV
-    );
+    // validate argument values
+    if (
+      !(
+        _.isString(firstName) &&
+        _.isString(lastName) &&
+        _.isString(email) &&
+        _.isString(message)
+      )
+    ) {
+      res.status(422).end("Unprocessable entity.");
+      return;
+    }
+
+    console.log(firstName, lastName, email, message);
     res.status(200).end("Email sent successfully");
 
     // Create a nodemailer transporter using your configuration
-    const transporter = nodemailer.createTransport({
-      service: "Gmail",
-      auth: {
-        user: "your-email@gmail.com",
-        pass: "your-email-password",
-      },
-    });
+    // const transporter = nodemailer.createTransport({
+    //   service: "Gmail",
+    //   auth: {
+    //     user: "your-email@gmail.com",
+    //     pass: "your-email-password",
+    //   },
+    // });
 
     // Compose the email message
     // const message = {

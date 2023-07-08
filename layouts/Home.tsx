@@ -25,7 +25,7 @@ const Home = () => {
           {/* left panel */}
           <div className="left-panel order-last order-md-first col-12 col-md-6">
             <h1 className="section-title">Hi, I&apos;m SengKhun</h1>
-            <h6 className="section-subtitle">Full stack developer</h6>
+            <h6 className="section-subtitle">Full Stack Developer</h6>
             <p className="description">
               Extensive expertise in web and mobile development, consistently
               delivering high-quality results.
