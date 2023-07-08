@@ -539,3 +539,26 @@ nav {
   }
 }
 // end of skill set dropdown
+
+// input
+.form-floating .error-validation {
+  margin-top: 0.2rem;
+  color: color(red);
+  font-size: 0.8rem;
+}
+
+.text-area-footer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#count_message {
+  flex-grow: 1;
+  text-align: right;
+  font-size: 0.8rem;
+  color: color(grey);
+  margin-top: 0.2rem;
+  margin-left: 1rem;
+}
+// end of input
