@@ -9,7 +9,7 @@ import CONSTANT from "../public/constant";
 import { GA_CATEGORIES } from "../public/constant";
 
 const Contact = () => {
-  const onSubmitClick = (e: any) => {
+  const onSubmitClick = async (e: any) => {
     e.preventDefault();
 
     // send GA event
@@ -17,6 +17,24 @@ const Contact = () => {
       category: GA_CATEGORIES.buttonClick,
       action: "Send Message",
     });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: "Sengkhun Lim" }),
+      });
+
+      if (response.ok) {
+        console.log("Email sent successfully");
+      } else {
+        console.error("Failed to send email");
+      }
+    } catch (error) {
+      console.error("Error sending request:", error);
+    }
   };
 
   return (

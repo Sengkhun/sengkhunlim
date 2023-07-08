@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { MdWorkOutline, MdOutlineSchool } from "react-icons/md";
 import { FiCalendar } from "react-icons/fi";
@@ -105,7 +105,7 @@ const Qualification = () => {
         <div className="qualification-timeline">
           {timeline.map((item: any, idx: any) =>
             idx % 2 === 0 ? (
-              <div key={`${item.title} ${idx}`}>
+              <Fragment key={`${item.title} ${idx}`}>
                 <div className="qualification-data">
                   <span className="qualification-title">{item.title}</span>
                   <span className="qualification-subtitle">
@@ -125,9 +125,9 @@ const Qualification = () => {
                 </div>
 
                 <div></div>
-              </div>
+              </Fragment>
             ) : (
-              <div key={`${item.title} ${idx}`}>
+              <Fragment key={`${item.title} ${idx}`}>
                 <div></div>
                 <div className="divider">
                   <FaCircle />
@@ -145,7 +145,7 @@ const Qualification = () => {
                     <span>{item.year}</span>
                   </div>
                 </div>
-              </div>
+              </Fragment>
             )
           )}
         </div>

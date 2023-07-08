@@ -47,7 +47,7 @@ const Navbar = () => {
     if (navMobileRef.current) {
       navMobileRef.current.style.top = "0";
       navMobileRef.current.style.opacity = "1";
-      navMobileRef.current.style["z-index"] = "1";
+      navMobileRef.current.style.zIndex = "1";
     }
   };
 
@@ -55,7 +55,7 @@ const Navbar = () => {
     if (navMobileRef.current) {
       const height = navMobileRef.current.clientHeight + 10; // shadow height 10px
       navMobileRef.current.style.top = `-${height}px`;
-      navMobileRef.current.style["z-index"] = -1;
+      navMobileRef.current.style.zIndex = "-1";
     }
 
     // send GA event
