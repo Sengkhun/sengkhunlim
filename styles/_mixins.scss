@@ -35,3 +35,7 @@
 @mixin shadow-1 {
   box-shadow: 8px 8px 12px rgba(122, 122, 122, 0.2);
 }
+
+@mixin no-shadow {
+  box-shadow: none;
+}

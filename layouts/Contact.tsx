@@ -210,6 +210,7 @@ const Contact = () => {
                       name="firstName"
                       type="text"
                       className="form-control"
+                      disabled={loading}
                       value={firstName}
                       onChange={onTextChange(setFirstName)}
                     />
@@ -229,6 +230,7 @@ const Contact = () => {
                       name="lastName"
                       type="text"
                       className="form-control"
+                      disabled={loading}
                       value={lastName}
                       onChange={onTextChange(setLastName)}
                     />
@@ -250,6 +252,7 @@ const Contact = () => {
                       name="email"
                       type="text"
                       className="form-control"
+                      disabled={loading}
                       value={email}
                       onChange={onTextChange(setEmail)}
                     />
@@ -270,6 +273,7 @@ const Contact = () => {
                     <textarea
                       name="message"
                       className="form-control"
+                      disabled={loading}
                       rows={5}
                       maxLength={MAXIMUM_MESSAGE_LENGTH}
                       value={message}
@@ -296,6 +300,7 @@ const Contact = () => {
 
                 {/* submit button */}
                 <button
+                  id="contact-submit-btn"
                   type="submit"
                   title="Submit"
                   disabled={loading}

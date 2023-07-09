@@ -2,6 +2,17 @@ import _ from "lodash";
 import { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 
+// initialize mail transporter
+const mailTransporter = nodemailer.createTransport({
+  host: process.env.EMAIL_HOST,
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -22,34 +33,22 @@ export default async function handler(
       return;
     }
 
-    console.log(firstName, lastName, email, message);
-    res.status(200).end("Email sent successfully");
+    // compose the email message
+    const emailContent = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "New Client Details",
+      text: `Name: ${firstName} ${lastName}\nEmail: ${email}\nMessage: ${message}`,
+    };
 
-    // Create a nodemailer transporter using your configuration
-    // const transporter = nodemailer.createTransport({
-    //   service: "Gmail",
-    //   auth: {
-    //     user: "your-email@gmail.com",
-    //     pass: "your-email-password",
-    //   },
-    // });
-
-    // Compose the email message
-    // const message = {
-    //   from: "your-email@gmail.com",
-    //   to: "your-email@gmail.com",
-    //   subject: "New Client Details",
-    //   text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}`,
-    // };
-
-    // try {
-    //   // Send the email
-    //   await transporter.sendMail(message);
-    //   res.status(200).end("Email sent successfully");
-    // } catch (error) {
-    //   console.error("Error sending email:", error);
-    //   res.status(500).end("Error sending email");
-    // }
+    try {
+      // Send the email
+      await mailTransporter.sendMail(emailContent);
+      res.status(200).end("Email sent successfully");
+    } catch (error) {
+      console.error("Error sending email:", error);
+      res.status(500).end("Error sending email");
+    }
   } else {
     res.status(405).end("Method not allowed");
   }
