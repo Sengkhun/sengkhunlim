@@ -12,6 +12,10 @@
     text-align: center;
     margin-bottom: $margin-bottom;
   }
+
+  @include media-breakpoint-down(sm) {
+    padding: 4rem 0 2rem;
+  }
 }
 
 // home
@@ -468,13 +472,14 @@ footer {
     color(primary-light)
   );
 
+  @include media-breakpoint-down(sm) {
+    background: color(primary);
+  }
+
   .container {
     @include transition(all 200ms ease-in-out);
     color: color(white);
     font-weight: bold;
-
-    .profile {
-    }
 
     .site-map {
       display: flex;
