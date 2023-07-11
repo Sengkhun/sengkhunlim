@@ -73,7 +73,7 @@ const awardTimeline = [
   },
   {
     title: "Winner of SmartStart Cycle 1 Grand Final",
-    subtitle: "SMART Axiata, Cambodia",
+    subtitle: "Smart Axiata, Cambodia",
     year: "Jan 2018",
   },
   {
