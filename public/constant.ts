@@ -13,7 +13,7 @@ const CONSTANT = {
   description:
     "I am a web and mobile developer with a strong background in program development and problem-solving. I have comprehensive knowledge of React and React Native along with extensive experience of backend development using ExpressJS, GraphQL, and MongoDB. I also have experience in collaborating and negotiating with clients and business partners during my own start-up. I am passionate about new technologies and findings to leverage my skills and experience into professional work as a developer.",
   phone: "0431 189 999",
-  email: "limsengkhun@gmail.com",
+  email: "support@sengkhun.com",
   location: "Adelaide, South Australia",
   locationLink: "https://goo.gl/maps/SANv3CE2BQJzpcjSA",
   linkedInLink: "https://linkedin.com/in/sengkhunlim",

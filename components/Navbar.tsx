@@ -215,7 +215,7 @@ const Navbar = () => {
       <div className="nav-parent-container">
         <nav ref={navRef}>
           <div className="container">
-            <span className="logo">SengKhun</span>
+            <span className="logo">Khun</span>
             <ul className="link-container">
               {/* render for large screen */}
               {currentBreakpoint == "lg" &&
