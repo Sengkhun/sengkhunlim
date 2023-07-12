@@ -26,11 +26,7 @@ const About = () => {
       <div className="container">
         <h1 className="section-title">About Me</h1>
         <h6 className="section-subtitle">My Introduction</h6>
-        <p className="description">
-          Full Stack Developer, with extensive knowledge and years of
-          experience, working with latest technologies to integrate in projects,
-          delivering high quality work.
-        </p>
+        <p className="description">{CONSTANT.description}</p>
         <div className="info-container">
           <div className="inner-container">
             <h2>04+</h2>

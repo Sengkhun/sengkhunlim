@@ -13,11 +13,24 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
+        {/* tags for SEO */}
+        <html lang="en" />
         <title>{CONSTANT.title}</title>
         <meta name="description" content={CONSTANT.description} />
+        <meta name="keywords" content={CONSTANT.keywords} />
+        <meta property="og:title" content={CONSTANT.title} />
+        <meta property="og:description" content={CONSTANT.description} />
+        <meta name="theme-color" content="#1abc9c" />
+        {/* <meta property="og:image" content="http://example.com/your-image.jpg" /> */}
+        <link rel="canonical" href="https://sengkhun.com" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content={CONSTANT.author} />
+        <meta name="geo.region" content="AU" />
+        <meta name="geo.placename" content="Adelaide, South Australia" />
+
+        {/* additional tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#1abc9c"></meta>
       </Head>
 
       <Script

@@ -11,7 +11,10 @@ import imgGoSoccer from "./media/gosoccer.png";
 const CONSTANT = {
   title: "Sengkhun Lim | Full Stack Developer",
   description:
-    "I am a web and mobile developer with a strong background in program development and problem-solving. I have comprehensive knowledge of React and React Native along with extensive experience of backend development using ExpressJS, GraphQL, and MongoDB. I also have experience in collaborating and negotiating with clients and business partners during my own start-up. I am passionate about new technologies and findings to leverage my skills and experience into professional work as a developer.",
+    "Full Stack Developer, with extensive knowledge and years of experience, working with latest technologies to integrate in projects, delivering high quality work.",
+  keywords:
+    "Full Stack Developer, Latest Technologies, High-Quality Work, React, React Native, Mobile App Development, Backend Development, ExpressJS, GraphQL, MongoDB, Firebase, Google Cloud Services, Monitoring Tools, DevOps, Healthcare Applications, Sports Applications, Food Industry Applications, Problem-Solving Skills, Software Development, Proficient, Experience",
+  author: "Sengkhun Lim",
   phone: "0431 189 999",
   email: "support@sengkhun.com",
   location: "Adelaide, South Australia",
