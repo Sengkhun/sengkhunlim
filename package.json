@@ -7,6 +7,7 @@
     "devh": "next dev -H 192.168.0.37",
     "build": "next build",
     "start": "next start",
+    "startServer": "pm2 start npm --name limsengkhun -- start",
     "lint": "next lint"
   },
   "dependencies": {

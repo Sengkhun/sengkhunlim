@@ -22,8 +22,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <meta property="og:description" content={CONSTANT.description} />
         <meta name="theme-color" content="#1abc9c" />
         {/* <meta property="og:image" content="http://example.com/your-image.jpg" /> */}
-        <link rel="canonical" href="https://sengkhun.com" />
-        <meta name="robots" content="index, follow" />
+        {/* <link rel="canonical" href="https://sengkhun.com" /> */}
+        {/* <meta name="robots" content="index, follow" /> */}
         <meta name="author" content={CONSTANT.author} />
         <meta name="geo.region" content="AU" />
         <meta name="geo.placename" content="Adelaide, South Australia" />
