@@ -5,8 +5,8 @@ import nodemailer from "nodemailer";
 // initialize mail transporter
 const mailTransporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
@@ -43,7 +43,8 @@ export default async function handler(
 
     try {
       // Send the email
-      await mailTransporter.sendMail(emailContent);
+      const response = await mailTransporter.sendMail(emailContent);
+      console.log("🚀 ~ file: contact.ts:47 ~ response:", response);
       res.status(200).end("Email sent successfully");
     } catch (error) {
       console.error("Error sending email:", error);

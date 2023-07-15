@@ -43,6 +43,8 @@ const Index = (props: IndexProps) => {
   return (
     <>
       <Head>
+        <meta property="og:title" content={CONSTANT.title} />
+        <meta property="og:description" content={CONSTANT.description} />
         <meta
           property="og:image"
           content={`${props.baseUrl}/images/web-thumbnail.png`}
@@ -52,7 +54,7 @@ const Index = (props: IndexProps) => {
       <main>
         <Navbar />
         <Home />
-        <About />
+        <About baseUrl={props.baseUrl} />
         <Skill />
         <Qualification />
         {/* <Media /> */}

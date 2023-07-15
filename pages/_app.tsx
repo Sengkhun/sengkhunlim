@@ -18,8 +18,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <title>{CONSTANT.title}</title>
         <meta name="description" content={CONSTANT.description} />
         <meta name="keywords" content={CONSTANT.keywords} />
-        <meta property="og:title" content={CONSTANT.title} />
-        <meta property="og:description" content={CONSTANT.description} />
         <meta name="theme-color" content="#1abc9c" />
         <link rel="canonical" href="https://sengkhun.com" />
         <meta name="robots" content="index, follow" />

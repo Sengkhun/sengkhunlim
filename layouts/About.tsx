@@ -4,7 +4,11 @@ import ReactGA from "react-ga4";
 
 import CONSTANT, { GA_CATEGORIES } from "../public/constant";
 
-const About = () => {
+interface AboutProps {
+  baseUrl: string;
+}
+
+const About = (props: AboutProps) => {
   const onDownloadClick = () => {
     // send GA event
     ReactGA.event({
@@ -13,7 +17,7 @@ const About = () => {
     });
 
     const link = document.createElement("a");
-    link.href = CONSTANT.cvLink;
+    link.href = `${props.baseUrl}/documents/Sengkhun_Lim_CV.pdf`;
     link.download = CONSTANT.cvFilename;
     link.target = "_blank"; // Open in a new tab
     link.rel = "noopener noreferrer";
