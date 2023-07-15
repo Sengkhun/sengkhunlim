@@ -1,9 +1,16 @@
 import _ from "lodash";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, {
+  ChangeEvent,
+  FormEvent,
+  KeyboardEvent,
+  useRef,
+  useState,
+} from "react";
 import { FiMail, FiMapPin, FiLinkedin } from "react-icons/fi";
 import { AiOutlineSend } from "react-icons/ai";
 import ReactGA from "react-ga4";
 import Image from "next/image";
+import { isMobile } from "react-device-detect";
 
 import Label from "../components/Label";
 import Loader from "../components/Loader";
@@ -34,6 +41,44 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [errorMessages, setErrorMessages] = useState<ErrorMessages>({});
+
+  // refs
+  const firstNameInputRef = useRef<HTMLInputElement>(null);
+  const lastNameInputRef = useRef<HTMLInputElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const messageInputRef = useRef<HTMLInputElement>(null);
+
+  const onKeyDown =
+    (name: string) =>
+    (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (isMobile) {
+        // focus the next input
+        if (event.key === "Enter") {
+          switch (name) {
+            case "firstName":
+              // focus last name
+              event.preventDefault();
+              lastNameInputRef?.current?.focus?.();
+              break;
+
+            case "lastName":
+              // focus email name
+              event.preventDefault();
+              emailInputRef?.current?.focus?.();
+              break;
+
+            case "email":
+              // focus message
+              event.preventDefault();
+              messageInputRef?.current?.focus?.();
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
+    };
 
   const onTextChange =
     (setState: React.Dispatch<React.SetStateAction<string>>) =>
@@ -202,17 +247,19 @@ const Contact = () => {
             <div className="col-12 col-md-7 right-panel">
               {/* contact form  */}
 
-              <form onSubmit={onSubmitClick}>
+              <form>
                 <div className="row">
                   {/* first name */}
                   <div className="form-floating col-12 col-md-6">
                     <input
+                      ref={firstNameInputRef}
                       name="firstName"
                       type="text"
                       className="form-control"
                       disabled={loading}
                       value={firstName}
                       onChange={onTextChange(setFirstName)}
+                      onKeyDown={onKeyDown("firstName")}
                     />
                     <label>First name</label>
 
@@ -227,12 +274,14 @@ const Contact = () => {
                   {/* last name */}
                   <div className="form-floating col-12 col-md-6">
                     <input
+                      ref={lastNameInputRef}
                       name="lastName"
                       type="text"
                       className="form-control"
                       disabled={loading}
                       value={lastName}
                       onChange={onTextChange(setLastName)}
+                      onKeyDown={onKeyDown("lastName")}
                     />
                     <label>Last name</label>
 
@@ -249,12 +298,14 @@ const Contact = () => {
                 <div className="row">
                   <div className="form-floating col-12">
                     <input
+                      ref={emailInputRef}
                       name="email"
                       type="text"
                       className="form-control"
                       disabled={loading}
                       value={email}
                       onChange={onTextChange(setEmail)}
+                      onKeyDown={onKeyDown("email")}
                     />
                     <label>Email</label>
 
@@ -271,6 +322,7 @@ const Contact = () => {
                 <div className="row">
                   <div className="form-floating col-12">
                     <textarea
+                      ref={messageInputRef}
                       name="message"
                       className="form-control"
                       disabled={loading}
@@ -278,6 +330,7 @@ const Contact = () => {
                       maxLength={MAXIMUM_MESSAGE_LENGTH}
                       value={message}
                       onChange={onTextAreaChange(setMessage)}
+                      onKeyDown={onKeyDown("message")}
                     />
                     <label>Message</label>
 

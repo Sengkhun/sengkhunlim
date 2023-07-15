@@ -21,8 +21,6 @@ const CONSTANT = {
   locationLink: "https://goo.gl/maps/SANv3CE2BQJzpcjSA",
   linkedInLink: "https://linkedin.com/in/sengkhunlim",
   cvFilename: "Sengkhun_Lim_CV.pdf",
-  cvLink:
-    "https://drive.google.com/file/d/19iPDNXhyA_1Y1gA4Jp3miSgpL2FiNgrM/view?usp=share_link",
 };
 
 export const BREAK_POINTS = {
