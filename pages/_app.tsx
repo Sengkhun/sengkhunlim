@@ -24,10 +24,24 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <meta name="author" content={CONSTANT.author} />
         <meta name="geo.region" content="AU" />
         <meta name="geo.placename" content="Adelaide, South Australia" />
+        <meta property="og:site_name" content={CONSTANT.title} />
 
         {/* additional tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+
+        {/* structured data */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context" : "https://sengkhun.com",
+              "@type" : "WebSite",
+              "name" : "Sengkhun Lim",
+              "alternateName" : "Khun",
+              "url" : "https://sengkhun.com/"
+            }
+          `}
+        </script>
       </Head>
 
       <Script
