@@ -14,12 +14,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         {/* tags for SEO */}
-        {/* <html lang="en" /> */}
         <title>{CONSTANT.title}</title>
         <meta name="description" content={CONSTANT.description} />
         <meta name="keywords" content={CONSTANT.keywords} />
         <meta name="theme-color" content="#1abc9c" />
-        <link rel="canonical" href="https://sengkhun.com" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content={CONSTANT.author} />
         <meta name="geo.region" content="AU" />

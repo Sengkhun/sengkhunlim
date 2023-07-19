@@ -30,11 +30,11 @@ const workTimeline = [
     subtitle: "GoSoccer, Cambodia",
     year: "Apr 2017 - Mar 2019",
   },
-  // {
-  //   title: "Full Stack Developer",
-  //   subtitle: "Reaksmey Furniture, Cambodia",
-  //   year: "2016 - 2019",
-  // },
+  {
+    title: "Full Stack Developer",
+    subtitle: "Reaksmey Furniture, Cambodia",
+    year: "2016 - 2019",
+  },
 ];
 
 const educationTimeline = [
