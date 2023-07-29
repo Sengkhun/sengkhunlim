@@ -15,8 +15,7 @@ import { isMobile } from "react-device-detect";
 import Label from "../components/Label";
 import Loader from "../components/Loader";
 
-import CONSTANT from "../public/constant";
-import { GA_CATEGORIES } from "../public/constant";
+import CONSTANT, { GA_CATEGORIES } from "../utils/constant";
 import { validateEmail } from "../utils/helpers";
 import ConfirmedImage from "../public/images/contact-form-submitted-confirm.svg";
 

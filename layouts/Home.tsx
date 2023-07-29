@@ -5,7 +5,7 @@ import ReactGA from "react-ga4";
 
 import ProfilePicture from "../public/images/profile-picture.png";
 import ProfilePictureSquare from "../public/images/profile-picture-square.png";
-import { GA_CATEGORIES } from "../public/constant";
+import { GA_CATEGORIES } from "../utils/constant";
 
 const Home = () => {
   const onContactClick = () => {

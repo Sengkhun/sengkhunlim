@@ -6,7 +6,7 @@ import { FaCircle } from "react-icons/fa";
 import { PiMedal } from "react-icons/pi";
 import ReactGA from "react-ga4";
 
-import { GA_CATEGORIES } from "../public/constant";
+import { GA_CATEGORIES, QUALIFICATION_TIMELINES } from "../utils/constant";
 
 const qualificationCategories = [
   { label: "Work", icon: <MdWorkOutline /> },
@@ -14,76 +14,11 @@ const qualificationCategories = [
   { label: "Awards", icon: <PiMedal /> },
 ];
 
-const workTimeline = [
-  {
-    title: "Full Stack Developer",
-    subtitle: "Bigwig Advertising & Digital, Australia",
-    year: "July 2021 - present",
-  },
-  {
-    title: "Full Stack Project Lead Developer",
-    subtitle: "TK CAPITAL PLC., Cambodia",
-    year: "Aug 2018 - Jan 2020",
-  },
-  {
-    title: "Backend Developer",
-    subtitle: "GoSoccer, Cambodia",
-    year: "Apr 2017 - Mar 2019",
-  },
-  {
-    title: "Full Stack Developer",
-    subtitle: "Reaksmey Furniture, Cambodia",
-    year: "2016 - 2019",
-  },
+const allTimeline = [
+  QUALIFICATION_TIMELINES.work,
+  QUALIFICATION_TIMELINES.education,
+  QUALIFICATION_TIMELINES.award,
 ];
-
-const educationTimeline = [
-  {
-    title: "Master's degree in Information Technology",
-    subtitle: "University of South Australia, Australia",
-    year: "Jul 2020 -  Nov 2021",
-  },
-  {
-    title: "Graduate Certificate in Information Technology",
-    subtitle: "University of South Australia, Australia",
-    year: "Mar 2020 - Jul 2020",
-  },
-  {
-    title: "Bachelor's degree in Computer Science",
-    subtitle: "Paragon International Univeristy, Cambodia",
-    year: "2015 - 2019",
-  },
-  {
-    title: "Android Application Development Course",
-    subtitle: "Cambodia-Korea Cooperation Center, Cambodia",
-    year: "Apr - Jun 2014",
-  },
-];
-
-const awardTimeline = [
-  {
-    title: "Top 5% student in the Master's degree program",
-    subtitle: "University of South Australia, Australia",
-    year: "Mar 2022",
-  },
-  {
-    title: "Honor Student Award",
-    subtitle: "Paragon International Univeristy, Cambodia",
-    year: "Jul 2019",
-  },
-  {
-    title: "Winner of SmartStart Cycle 1 Grand Final",
-    subtitle: "Smart Axiata, Cambodia",
-    year: "Jan 2018",
-  },
-  {
-    title: "Winner of the SmartStart Young Innovator Program",
-    subtitle: "Smart Axiata, Cambodia",
-    year: "May 2017",
-  },
-];
-
-const allTimeline = [workTimeline, educationTimeline, awardTimeline];
 
 const Qualification = () => {
   // states
@@ -97,6 +32,10 @@ const Qualification = () => {
       category: GA_CATEGORIES.tabClick,
       action: label,
     });
+  };
+
+  const onTabChange = (idx: number) => {
+    setActiveTab(idx);
   };
 
   const renderTimeline = (timeline: any, timelineIdx: any) => {
@@ -119,9 +58,7 @@ const Qualification = () => {
 
                 <div className="divider">
                   <FaCircle />
-                  {educationTimeline.length - 1 !== idx && (
-                    <div className="line"></div>
-                  )}
+                  {timeline.length - 1 !== idx && <div className="line"></div>}
                 </div>
 
                 <div></div>
@@ -131,9 +68,7 @@ const Qualification = () => {
                 <div></div>
                 <div className="divider">
                   <FaCircle />
-                  {educationTimeline.length - 1 !== idx && (
-                    <div className="line"></div>
-                  )}
+                  {timeline.length - 1 !== idx && <div className="line"></div>}
                 </div>
                 <div className="qualification-data">
                   <span className="qualification-title">{item.title}</span>
@@ -175,7 +110,7 @@ const Qualification = () => {
         </div>
 
         {/* timeline */}
-        <SwipeableViews index={activeTab}>
+        <SwipeableViews index={activeTab} onChangeIndex={onTabChange}>
           {allTimeline.map(renderTimeline)}
         </SwipeableViews>
       </div>

@@ -14,7 +14,7 @@ import { RiMenu3Fill } from "react-icons/ri";
 import { BiArrowToTop } from "react-icons/bi";
 import ReactGA from "react-ga4";
 
-import { BREAK_POINTS, GA_CATEGORIES } from "../public/constant";
+import { BREAK_POINTS, GA_CATEGORIES } from "../utils/constant";
 
 const navbarOptions = [
   { title: "Home", href: "#home", icon: <AiOutlineHome /> },
@@ -142,7 +142,7 @@ const Navbar = () => {
     }, 200);
 
     var minHeighToDisplay = 300;
-    var prevScrollpos = window.pageYOffset;
+    // var prevScrollpos = window.pageYOffset;
     window.onscroll = throttle(() => {
       const currentScrollPos = window.pageYOffset;
       if (navRef) {
@@ -156,15 +156,15 @@ const Navbar = () => {
         }
 
         // hide nav bar when scroll bigger than minHeightToHide
-        if (currentScrollPos > minHeightToHide && navRef.current) {
-          if (prevScrollpos > currentScrollPos) {
-            navRef.current.style.top = "0";
-          } else {
-            navRef.current.style.top = `-${navHeight}px`;
-            navRef.current.classList.remove("nav-shadow");
-          }
-          prevScrollpos = currentScrollPos;
-        }
+        // if (currentScrollPos > minHeightToHide && navRef.current) {
+        //   if (prevScrollpos > currentScrollPos) {
+        //     navRef.current.style.top = "0";
+        //   } else {
+        //     navRef.current.style.top = `-${navHeight}px`;
+        //     navRef.current.classList.remove("nav-shadow");
+        //   }
+        //   prevScrollpos = currentScrollPos;
+        // }
 
         // handle nav active class
         handleActiveNavSection(window.pageYOffset, listSections);

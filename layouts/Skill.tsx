@@ -3,22 +3,13 @@ import { FaLaptopCode } from "react-icons/fa";
 import { BiCodeBlock } from "react-icons/bi";
 
 import SkillSet from "../components/SkillSet";
+import { SKILL_SETS } from "../utils/constant";
 
-const frontendSkills = [
-  { label: "React & React Native", percentage: 100 },
-  { label: "JavaScript & Typescript", percentage: 100 },
-  { label: "HTML & CSS", percentage: 95 },
-  { label: "UX & UI", percentage: 95 },
-];
+interface SkillProps {
+  yearsOfExperience: number;
+}
 
-const backendSkills = [
-  { label: "API Development", percentage: 100 },
-  { label: "Database Management", percentage: 100 },
-  { label: "Cloud Hosting", percentage: 95 },
-  { label: "Security and Authentication", percentage: 95 },
-];
-
-const Skill = () => {
+const Skill = (props: SkillProps) => {
   return (
     <div id="skill" className="section-container skill-section">
       <div className="container">
@@ -29,16 +20,16 @@ const Skill = () => {
           <SkillSet
             icon={<BiCodeBlock className="main-icon" />}
             title="Frontend Development"
-            subtitle="More than 4 years"
-            skills={frontendSkills}
+            subtitle={`More than ${props.yearsOfExperience} years`}
+            skills={SKILL_SETS.frontend}
           />
 
           {/* backend */}
           <SkillSet
             icon={<FaLaptopCode className="main-icon" />}
             title="Backend & Dev Ops"
-            subtitle="More than 4 years"
-            skills={backendSkills}
+            subtitle={`More than ${props.yearsOfExperience} years`}
+            skills={SKILL_SETS.backend}
           />
 
           {/* dev ops */}

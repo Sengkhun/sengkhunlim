@@ -3,7 +3,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import ReactGA from "react-ga4";
 
-import CONSTANT, { GA_CATEGORIES } from "../public/constant";
+import CONSTANT, { GA_CATEGORIES } from "../utils/constant";
 
 const Footer = () => {
   const onNavClick = (title: string) => {
@@ -30,7 +30,7 @@ const Footer = () => {
         <div className="row">
           {/* left section */}
           <section className="profile col col-12 col-md-4 col-lg-3">
-            <h3>SengKhun</h3>
+            <h3>Khun</h3>
             <span>Full Stack Developer</span>
           </section>
 
