@@ -198,7 +198,8 @@
         }
 
         &:hover {
-          background-color: color(primary-light);
+          background-color: color(secondary);
+          opacity: 0.5;
 
           svg,
           span {
@@ -211,7 +212,16 @@
         }
 
         &.active {
-          background-color: color(primary);
+          @include btn-gradient;
+
+          &:hover {
+            @include btn-gradient-hover;
+            opacity: 1;
+          }
+
+          &:active {
+            @include btn-gradient-active;
+          }
 
           svg,
           span {

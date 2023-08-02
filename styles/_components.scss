@@ -231,12 +231,12 @@ nav {
   @include transition(color 200ms ease-in-out);
   @include transition(opacity 300ms ease-in);
   @include shadow-1();
+  @include btn-vertical-gradient;
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  background: color(primary);
   font-size: 1.6rem;
   right: 2rem;
   width: 3.5rem;
@@ -264,8 +264,8 @@ nav {
   }
 
   &:hover {
+    @include btn-vertical-gradient-hover;
     color: white;
-    opacity: $hover-opacity;
 
     svg {
       transform: translateY(-0.2rem);
@@ -273,7 +273,7 @@ nav {
   }
 
   &:active {
-    opacity: $active-opacity;
+    @include btn-vertical-gradient-active;
   }
 
   @include media-breakpoint-down(md) {
@@ -380,17 +380,21 @@ nav {
       position: relative;
       width: 100%;
       height: 10px;
-      background-color: color(primary-light);
+      background-color: color(light-grey);
       border-radius: 5px;
       margin-bottom: $margin-bottom;
 
       span {
+        @include btn-gradient;
         position: absolute;
         top: 0;
         left: 0;
         height: 10px;
-        background-color: color(primary);
         border-radius: 5px;
+
+        &:hover {
+          @include btn-gradient-hover;
+        }
       }
     }
   }

@@ -39,3 +39,41 @@
 @mixin no-shadow {
   box-shadow: none;
 }
+
+@mixin btn-gradient {
+  background-image: linear-gradient(
+    to right,
+    color(primary) 0%,
+    color(secondary) 51%,
+    color(primary) 100%
+  );
+  background-size: 200% auto;
+  transition: 0.5s;
+}
+
+@mixin btn-gradient-hover {
+  background-position: right center; /* change the direction of the change here */
+}
+
+@mixin btn-gradient-active {
+  background-position: center center; /* change the direction of the change here */
+}
+
+@mixin btn-vertical-gradient {
+  background-image: linear-gradient(
+    to bottom,
+    color(primary) 0%,
+    color(secondary) 51%,
+    color(primary) 100%
+  );
+  background-size: auto 200%;
+  transition: 1s;
+}
+
+@mixin btn-vertical-gradient-hover {
+  background-position: bottom center; /* change the direction of the change here */
+}
+
+@mixin btn-vertical-gradient-active {
+  background-position: center center; /* change the direction of the change here */
+}

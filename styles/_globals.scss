@@ -22,6 +22,7 @@ p {
 button {
   @include select-none;
   @include transition(all 200ms ease-in-out);
+  @include btn-gradient;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,14 +30,17 @@ button {
   border-radius: 0.5rem;
   border: none;
   color: color(white);
-  background: color(primary);
+  box-shadow: 0 0 20px #eee;
   font-size: 1.2rem;
   font-weight: 700;
   cursor: pointer;
 
   &:hover {
     @include shadow;
-    opacity: $hover-opacity;
+    @include btn-gradient-hover;
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
 
     svg {
       transform: translateX(0.25rem);
@@ -49,12 +53,12 @@ button {
 
   &:active {
     @include shadow-1;
-    background: color(primary-dark);
+    @include btn-gradient-active;
   }
 
   &:disabled {
     @include no-shadow;
-    opacity: 1;
+    opacity: 0.5;
     background-color: color(primary-light);
   }
 
