@@ -41,6 +41,7 @@
     align-items: center;
 
     .profile-image-square-container {
+      @include btn-gradient;
       width: 70%;
       min-width: 100px;
       max-width: 350px;
@@ -75,6 +76,7 @@
   }
 
   .circle {
+    @include btn-gradient;
     position: absolute;
     top: 25%;
     right: 10%;
@@ -462,11 +464,7 @@
 footer {
   min-height: 300px;
   padding: 4rem 0;
-  background: linear-gradient(
-    to right top,
-    color(primary),
-    color(primary-light)
-  );
+  background: linear-gradient(to right top, color(primary), color(secondary));
 
   @include media-breakpoint-down(sm) {
     background: color(primary);

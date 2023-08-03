@@ -42,6 +42,7 @@ const Navbar = () => {
   const navRef = useRef<HTMLDivElement>(null);
   const navMobileRef = useRef<HTMLDivElement>(null);
   const ArrowTopRef = useRef<HTMLAnchorElement>(null);
+  const listSectionsRef = useRef<sectionAttributes[]>([]);
 
   const onOpenMobileNav = () => {
     if (navMobileRef.current) {
@@ -67,36 +68,32 @@ const Navbar = () => {
   };
 
   const handleListSections = () => {
-    var initialHeight = 0;
     var listSections = [];
+    var offest = 0;
     const sections = document.getElementsByClassName("section-container");
     for (let index = 0; index < sections.length; index++) {
       const section = sections[index];
       const currentId = "#" + section.id;
-      const { height } = section.getBoundingClientRect();
+      const { top, bottom } = section.getBoundingClientRect();
+
+      if (index === 0) {
+        offest = -top;
+      }
 
       // get position of component start from 0px
-      const newHeight = initialHeight + height;
       listSections.push({
         id: currentId,
-        top: initialHeight,
-        bottom: newHeight,
+        top: top + offest,
+        bottom: bottom + offest,
       });
-      initialHeight = newHeight;
     }
     return listSections;
   };
 
-  const handleActiveNavSection = (
-    currentScrollPos: number,
-    listSections: sectionAttributes[]
-  ) => {
-    for (let index = 0; index < listSections.length; index++) {
-      const section = listSections[index];
-      if (
-        currentScrollPos >= section.top &&
-        currentScrollPos < section.bottom
-      ) {
+  const handleActiveNavSection = (currentScrollPos: number) => {
+    for (let index = 0; index < listSectionsRef.current.length; index++) {
+      const section = listSectionsRef.current[index];
+      if (currentScrollPos > section.top && currentScrollPos < section.bottom) {
         setCurrentSection(section);
         break;
       }
@@ -104,6 +101,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    var scrollOffet = 50;
     var windowHeight = window.innerHeight;
     var prevWidth = window.innerWidth;
     if (prevWidth < BREAK_POINTS.md) {
@@ -115,10 +113,10 @@ const Navbar = () => {
     }
 
     // get list of sections' size and id
-    var listSections = handleListSections();
+    listSectionsRef.current = handleListSections();
 
     // handle initial active nav section
-    handleActiveNavSection(window.pageYOffset, listSections);
+    handleActiveNavSection(window.scrollY + scrollOffet);
 
     window.onresize = throttle(() => {
       const currentWidth = window.innerWidth;
@@ -136,13 +134,12 @@ const Navbar = () => {
       }
 
       // get new list of sections' size and id
-      listSections = handleListSections();
+      listSectionsRef.current = handleListSections();
     }, 200);
 
     var minHeighToDisplay = 300;
-    // var prevScrollpos = window.pageYOffset;
     window.onscroll = throttle(() => {
-      const currentScrollPos = window.pageYOffset;
+      const currentScrollPos = window.scrollY;
       if (navRef) {
         const navHeight = navRef.current?.clientHeight || 0;
 
@@ -154,7 +151,7 @@ const Navbar = () => {
         }
 
         // handle nav active class
-        handleActiveNavSection(window.pageYOffset, listSections);
+        handleActiveNavSection(window.scrollY + scrollOffet);
       }
 
       // handle arrow to top

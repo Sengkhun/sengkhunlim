@@ -77,3 +77,9 @@
 @mixin btn-vertical-gradient-active {
   background-position: center center; /* change the direction of the change here */
 }
+
+@mixin text-gradient {
+  background: -webkit-linear-gradient(left, color(primary), color(secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
