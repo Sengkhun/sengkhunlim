@@ -14,7 +14,7 @@ import { RiMenu3Fill } from "react-icons/ri";
 import { BiArrowToTop } from "react-icons/bi";
 import ReactGA from "react-ga4";
 
-import { BREAK_POINTS, GA_CATEGORIES } from "../public/constant";
+import { BREAK_POINTS, GA_CATEGORIES } from "../utils/constant";
 
 const navbarOptions = [
   { title: "Home", href: "#home", icon: <AiOutlineHome /> },
@@ -105,7 +105,6 @@ const Navbar = () => {
 
   useEffect(() => {
     var windowHeight = window.innerHeight;
-    var minHeightToHide = windowHeight > 400 ? windowHeight : 400;
     var prevWidth = window.innerWidth;
     if (prevWidth < BREAK_POINTS.md) {
       setBreakpoint("sm");
@@ -134,7 +133,6 @@ const Navbar = () => {
       if (windowHeight != window.innerHeight) {
         // update height
         windowHeight = window.innerHeight;
-        minHeightToHide = windowHeight > 400 ? windowHeight : 400;
       }
 
       // get new list of sections' size and id
@@ -142,7 +140,7 @@ const Navbar = () => {
     }, 200);
 
     var minHeighToDisplay = 300;
-    var prevScrollpos = window.pageYOffset;
+    // var prevScrollpos = window.pageYOffset;
     window.onscroll = throttle(() => {
       const currentScrollPos = window.pageYOffset;
       if (navRef) {
@@ -153,17 +151,6 @@ const Navbar = () => {
           navRef.current?.classList.remove("nav-shadow");
         } else if (!navRef.current?.classList.contains("nav-shadow")) {
           navRef.current?.classList.add("nav-shadow");
-        }
-
-        // hide nav bar when scroll bigger than minHeightToHide
-        if (currentScrollPos > minHeightToHide && navRef.current) {
-          if (prevScrollpos > currentScrollPos) {
-            navRef.current.style.top = "0";
-          } else {
-            navRef.current.style.top = `-${navHeight}px`;
-            navRef.current.classList.remove("nav-shadow");
-          }
-          prevScrollpos = currentScrollPos;
         }
 
         // handle nav active class
@@ -286,28 +273,30 @@ const Navbar = () => {
         </nav>
 
         {/* mobile navbar menu */}
-        {currentBreakpoint == "sm" && (
-          <div ref={navMobileRef} className="navbar-menu-container container">
-            <div className="close-menu">
-              <AiOutlineClose onClick={() => onCloseMobileNav("Close")} />
+        {currentBreakpoint == "sm" ? (
+          <>
+            <div ref={navMobileRef} className="navbar-menu-container container">
+              <div className="close-menu">
+                <AiOutlineClose onClick={() => onCloseMobileNav("Close")} />
+              </div>
+              <ul className="navbar-menu">
+                {navbarOptions.map((item, idx) => (
+                  <a
+                    key={idx}
+                    href={item.href}
+                    className={`nav-item ${
+                      currentSection?.id === item.href ? "active" : ""
+                    }`}
+                    onClick={() => onCloseMobileNav(item.title)}
+                  >
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </a>
+                ))}
+              </ul>
             </div>
-            <ul className="navbar-menu">
-              {navbarOptions.map((item, idx) => (
-                <a
-                  key={idx}
-                  href={item.href}
-                  className={`nav-item ${
-                    currentSection?.id === item.href ? "active" : ""
-                  }`}
-                  onClick={() => onCloseMobileNav(item.title)}
-                >
-                  {item.icon}
-                  <span>{item.title}</span>
-                </a>
-              ))}
-            </ul>
-          </div>
-        )}
+          </>
+        ) : null}
       </div>
 
       {/* arrow that bring to the top of the page */}

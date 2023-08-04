@@ -5,7 +5,7 @@ import "../styles/main.scss";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 
-import CONSTANT from "../public/constant";
+import CONSTANT from "../utils/constant";
 
 ReactGA.initialize("G-QNL6FQWWHW");
 

@@ -2,7 +2,7 @@ import React from "react";
 import { IconBaseProps } from "react-icons/";
 import ReactGA from "react-ga4";
 
-import { GA_CATEGORIES } from "../public/constant";
+import { GA_CATEGORIES } from "../utils/constant";
 
 interface Props {
   icon: React.ReactElement<IconBaseProps>;

@@ -1,11 +1,13 @@
+import _ from "lodash";
 import React from "react";
 import { FiDownload } from "react-icons/fi";
 import ReactGA from "react-ga4";
 
-import CONSTANT, { GA_CATEGORIES } from "../public/constant";
+import CONSTANT, { GA_CATEGORIES } from "../utils/constant";
 
 interface AboutProps {
   baseUrl: string;
+  yearsOfExperience: number;
 }
 
 const About = (props: AboutProps) => {
@@ -33,7 +35,7 @@ const About = (props: AboutProps) => {
         <p className="description">{CONSTANT.description}</p>
         <div className="info-container">
           <div className="inner-container">
-            <h2>04+</h2>
+            <h2>{_.padStart(props.yearsOfExperience.toString(), 2, "0")}+</h2>
             <span>Years experience</span>
           </div>
           <div className="inner-container">

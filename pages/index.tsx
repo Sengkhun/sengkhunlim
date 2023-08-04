@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import ReactGA from "react-ga4";
+import moment from "moment";
 
 import Navbar from "../components/Navbar";
 
@@ -7,12 +8,11 @@ import Home from "../layouts/Home";
 import About from "../layouts/About";
 import Skill from "../layouts/Skill";
 import Qualification from "../layouts/Qualification";
-// import Media from "../layouts/Media";
 import Tool from "../layouts/Tool";
 import Contact from "../layouts/Contact";
 import Footer from "../layouts/Footer";
 
-import CONSTANT from "../public/constant";
+import CONSTANT from "../utils/constant";
 import Head from "next/head";
 
 export async function getServerSideProps({ req }: any) {
@@ -21,13 +21,19 @@ export async function getServerSideProps({ req }: any) {
     : "https://";
   const baseUrl = req ? `${protocol}${req.headers.host}` : "";
 
+  // calculate years of experience
+  const now = moment();
+  const startedDate = moment(CONSTANT.startedDate);
+  const yearsOfExperience = now.diff(startedDate, "years");
+
   return {
-    props: { baseUrl },
+    props: { baseUrl, yearsOfExperience },
   };
 }
 
 interface IndexProps {
   baseUrl: string;
+  yearsOfExperience: number;
 }
 
 const Index = (props: IndexProps) => {
@@ -55,10 +61,12 @@ const Index = (props: IndexProps) => {
       <main>
         <Navbar />
         <Home />
-        <About baseUrl={props.baseUrl} />
-        <Skill />
+        <About
+          baseUrl={props.baseUrl}
+          yearsOfExperience={props.yearsOfExperience}
+        />
+        <Skill yearsOfExperience={props.yearsOfExperience} />
         <Qualification />
-        {/* <Media /> */}
         <Tool />
         <Contact />
       </main>
