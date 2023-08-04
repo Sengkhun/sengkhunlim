@@ -290,9 +290,9 @@
         }
 
         .line {
+          @include btn-vertical-gradient;
           height: 100%;
           width: 2px;
-          background-color: color(primary);
         }
       }
     }
@@ -421,6 +421,11 @@
   .container {
     max-width: $container-max-width;
 
+    @include media-breakpoint-down(sm) {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
     .right-panel {
       textarea {
         height: 200px;
@@ -442,6 +447,7 @@
       }
 
       .confirm-message-title {
+        @include text-gradient;
         text-align: center;
         font-size: 1.4rem;
         line-height: 1.5rem;

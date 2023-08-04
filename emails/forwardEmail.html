@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Thank you for Reaching Out!</title>
+    <title>Message from {firstName}</title>
   </head>
   <body
     style="
@@ -16,17 +16,14 @@
   >
     <!-- hidden text to show in preview -->
     <div style="display: none; max-height: 0px; overflow: hidden">
-      <p>Hello {firstName},</p>
       <p>
-        Thank you for getting in touch with me! Your email has been received,
-        and I'm thrilled to connect with you. I'll make sure to respond as soon
-        as possible and address any inquiries you may have.
+        You have received an email from the website. Please find the details
+        below.
       </p>
-      <p>Looking forward to discussing your project with you!</p>
-      <p>
-        Kind regards, <br />
-        Khun
-      </p>
+      <p><b>Name:</b> {firstName} {lastName}</p>
+      <p><b>Email:</b> {email}</p>
+      <p><b>Date:</b> {date}</p>
+      <p><b>Message:</b> {message}</p>
     </div>
     <!-- end of hidden text to show in preview -->
 
@@ -73,21 +70,18 @@
               "
             ></div>
 
-            <p>Hello {firstName},</p>
-
             <p>
-              Thank you for getting in touch with me! Your email has been
-              received, and I'm thrilled to connect with you. I'll make sure to
-              respond as soon as possible and address any inquiries you may
-              have.
+              You have received an email from the website. Please find the
+              details below.
             </p>
 
-            <p>Looking forward to discussing your project with you!</p>
+            <p><b>Name:</b> {firstName} {lastName}</p>
 
-            <p>
-              Kind regards, <br />
-              Khun
-            </p>
+            <p><b>Email:</b> {email}</p>
+
+            <p><b>Date:</b> {date}</p>
+
+            <p><b>Message:</b> {message}</p>
 
             <div
               style="
