@@ -1,7 +1,6 @@
 import htmlLogo from "../public/logos/html5-logo.png";
 import cssLogo from "../public/logos/css-logo.png";
 import jsLogo from "../public/logos/js-logo.png";
-import bootstrapLogo from "../public/logos/bootstrap-logo.png";
 import sassLogo from "../public/logos/sass-logo.png";
 import nextjsLogo from "../public/logos/nextjs-logo.png";
 import reactLogo from "../public/logos/react-logo.png";
@@ -19,7 +18,7 @@ import laravelLogo from "../public/logos/laravel-logo.png";
 const CONSTANT = {
   title: "Sengkhun Lim | Full Stack Developer",
   description:
-    "Full Stack Developer, with extensive knowledge and years of experience, working with latest technologies to integrate in projects, delivering high quality work.",
+    "With a robust {yearsOfExperience}+ years of experience, I've been busy creating scalable web and mobile apps. I've got a strong connection to the health, real estate, food, and sports industries. Throughout my career, I've fine-tuned my skills to effortlessly weave the latest technology into web and app projects, always ensuring top-quality outcomes.",
   keywords:
     "Full Stack Developer, Latest Technologies, High-Quality Work, React, React Native, Mobile App Development, Backend Development, ExpressJS, GraphQL, MongoDB, Firebase, Google Cloud Services, Monitoring Tools, DevOps, Healthcare Applications, Sports Applications, Food Industry Applications, Problem-Solving Skills, Software Development, Proficient, Experience",
   author: "Sengkhun Lim",

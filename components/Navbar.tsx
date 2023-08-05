@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { throttle } from "lodash";
 import {
   AiOutlineClose,
@@ -14,6 +16,7 @@ import { RiMenu3Fill } from "react-icons/ri";
 import { BiArrowToTop } from "react-icons/bi";
 import ReactGA from "react-ga4";
 
+import logo from "../public/logos/web-logo-only.png";
 import { BREAK_POINTS, GA_CATEGORIES } from "../utils/constant";
 
 const navbarOptions = [
@@ -199,7 +202,12 @@ const Navbar = () => {
       <div className="nav-parent-container">
         <nav ref={navRef}>
           <div className="container">
-            <span className="logo">Khun</span>
+            {/* logo */}
+            <Link className="logo-container" href="/#home">
+              <Image src={logo} alt="Logo" className="logo" />
+              <span>Khun</span>
+            </Link>
+
             <ul className="link-container">
               {/* render for large screen */}
               {currentBreakpoint == "lg" &&

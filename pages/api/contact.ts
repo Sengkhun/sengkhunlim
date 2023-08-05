@@ -6,7 +6,7 @@ import path from "path";
 import moment from "moment";
 import "moment-timezone";
 
-import { renderEmailTemplate } from "../../utils/helpers";
+import { stringFormatter } from "../../utils/helpers";
 
 // initialize mail transporter
 const mailTransporter = nodemailer.createTransport({
@@ -58,7 +58,7 @@ export default async function handler(
       },
       to: email,
       subject: "Thank you for Reaching Out!",
-      html: renderEmailTemplate(responseEmailTemplate, { firstName }),
+      html: stringFormatter(responseEmailTemplate, { firstName }),
     };
 
     const forwardEmailContent = {
@@ -68,7 +68,7 @@ export default async function handler(
       },
       to: String(process.env.EMAIL_USER),
       subject: `Message from ${firstName}`,
-      html: renderEmailTemplate(forwardEmailTemplate, {
+      html: stringFormatter(forwardEmailTemplate, {
         firstName,
         lastName,
         email,

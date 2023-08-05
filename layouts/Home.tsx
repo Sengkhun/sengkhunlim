@@ -27,8 +27,9 @@ const Home = () => {
             <h1 className="section-title">Hi, I&apos;m Khun</h1>
             <h6 className="section-subtitle">Full Stack Developer</h6>
             <p className="description">
-              Extensive expertise in web and mobile development, consistently
-              delivering high-quality results.
+              I love turning ideas into functional and elegant digital
+              solutions. From front-end finesse to back-end expertise, I&apos;ve
+              got you covered. Let&apos;s bring your visions to life!
             </p>
             <button onClick={onContactClick}>
               Contact Me <AiOutlineSend />

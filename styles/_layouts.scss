@@ -33,6 +33,7 @@
 
   .description {
     margin-bottom: $margin-bottom;
+    line-height: 175%;
   }
 
   .right-panel {
@@ -129,6 +130,7 @@
       max-width: $max-width;
       text-align: center;
       margin-bottom: $margin-bottom;
+      line-height: 175%;
     }
 
     .info-container {
@@ -399,6 +401,7 @@
         text-decoration: none;
 
         &:hover {
+          @include text-gradient;
           transform: translateY(-0.75rem);
         }
 

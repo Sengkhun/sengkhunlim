@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Head from "next/head";
 import ReactGA from "react-ga4";
 import moment from "moment";
 
@@ -13,7 +14,7 @@ import Contact from "../layouts/Contact";
 import Footer from "../layouts/Footer";
 
 import CONSTANT from "../utils/constant";
-import Head from "next/head";
+import { stringFormatter } from "../utils/helpers";
 
 export async function getServerSideProps({ req }: any) {
   const protocol = req?.headers.host.includes("localhost")
@@ -46,11 +47,16 @@ const Index = (props: IndexProps) => {
     });
   }, []);
 
+  const description = stringFormatter(CONSTANT.description, {
+    yearsOfExperience: props.yearsOfExperience,
+  });
+
   return (
     <>
       <Head>
+        <meta name="description" content={description} />
         <meta property="og:title" content={CONSTANT.title} />
-        <meta property="og:description" content={CONSTANT.description} />
+        <meta property="og:description" content={description} />
         <meta
           property="og:image"
           content={`${props.baseUrl}/images/web-thumbnail.png`}
