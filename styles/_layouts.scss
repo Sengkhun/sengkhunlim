@@ -41,6 +41,7 @@
     align-items: center;
 
     .profile-image-square-container {
+      @include btn-gradient;
       width: 70%;
       min-width: 100px;
       max-width: 350px;
@@ -75,6 +76,7 @@
   }
 
   .circle {
+    @include btn-gradient;
     position: absolute;
     top: 25%;
     right: 10%;
@@ -198,7 +200,8 @@
         }
 
         &:hover {
-          background-color: color(primary-light);
+          background-color: color(secondary);
+          opacity: 0.5;
 
           svg,
           span {
@@ -211,7 +214,16 @@
         }
 
         &.active {
-          background-color: color(primary);
+          @include btn-gradient;
+
+          &:hover {
+            @include btn-gradient-hover;
+            opacity: 1;
+          }
+
+          &:active {
+            @include btn-gradient-active;
+          }
 
           svg,
           span {
@@ -278,9 +290,9 @@
         }
 
         .line {
+          @include btn-vertical-gradient;
           height: 100%;
           width: 2px;
-          background-color: color(primary);
         }
       }
     }
@@ -409,6 +421,11 @@
   .container {
     max-width: $container-max-width;
 
+    @include media-breakpoint-down(sm) {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
     .right-panel {
       textarea {
         height: 200px;
@@ -430,6 +447,7 @@
       }
 
       .confirm-message-title {
+        @include text-gradient;
         text-align: center;
         font-size: 1.4rem;
         line-height: 1.5rem;
@@ -452,11 +470,7 @@
 footer {
   min-height: 300px;
   padding: 4rem 0;
-  background: linear-gradient(
-    to right top,
-    color(primary),
-    color(primary-light)
-  );
+  background: linear-gradient(to right top, color(primary), color(secondary));
 
   @include media-breakpoint-down(sm) {
     background: color(primary);

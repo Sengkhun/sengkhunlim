@@ -17,7 +17,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <title>{CONSTANT.title}</title>
         <meta name="description" content={CONSTANT.description} />
         <meta name="keywords" content={CONSTANT.keywords} />
-        <meta name="theme-color" content="#1abc9c" />
+        <meta name="theme-color" content="#5b86e5" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content={CONSTANT.author} />
         <meta name="geo.region" content="AU" />

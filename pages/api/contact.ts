@@ -3,6 +3,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
+import moment from "moment";
+import "moment-timezone";
+
 import { renderEmailTemplate } from "../../utils/helpers";
 
 // initialize mail transporter
@@ -36,11 +39,16 @@ export default async function handler(
     }
 
     // Read the email template file
-    const emailTemplatePath = path.join(
+    const responseEmailPath = path.join(
       process.cwd(),
       "emails/responseEmail.html"
     );
-    const responseEmailTemplate = fs.readFileSync(emailTemplatePath, "utf8");
+    const forwardEmailPath = path.join(
+      process.cwd(),
+      "emails/forwardEmail.html"
+    );
+    const responseEmailTemplate = fs.readFileSync(responseEmailPath, "utf8");
+    const forwardEmailTemplate = fs.readFileSync(forwardEmailPath, "utf8");
 
     // compose the email message
     const responseEmailContent = {
@@ -53,17 +61,28 @@ export default async function handler(
       html: renderEmailTemplate(responseEmailTemplate, { firstName }),
     };
 
-    // const notifyEmailContent = {
-    //   name: "Sengkhun Lim",
-    //   from: process.env.EMAIL_USER,
-    //   to: email,
-    //   subject: "New Client Details",
-    //   text: `Name: ${firstName} ${lastName}\nEmail: ${email}\nMessage: ${message}`,
-    // };
+    const forwardEmailContent = {
+      from: {
+        name: "Sengkhun Lim",
+        address: String(process.env.EMAIL_USER),
+      },
+      to: String(process.env.EMAIL_USER),
+      subject: `Message from ${firstName}`,
+      html: renderEmailTemplate(forwardEmailTemplate, {
+        firstName,
+        lastName,
+        email,
+        message,
+        date: moment().tz("Australia/Adelaide").format("YYYY-MM-DD h:mm a"),
+      }),
+    };
 
     try {
       // Send response email to client
-      await mailTransporter.sendMail(responseEmailContent);
+      await Promise.all([
+        mailTransporter.sendMail(responseEmailContent),
+        mailTransporter.sendMail(forwardEmailContent),
+      ]);
 
       res.status(200).end("Email sent successfully");
     } catch (error) {
