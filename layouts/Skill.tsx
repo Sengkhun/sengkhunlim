@@ -14,7 +14,7 @@ const Skill = (props: SkillProps) => {
     <div id="skill" className="section-container skill-section">
       <div className="container">
         <h1 className="section-title">Skills</h1>
-        <h6 className="section-subtitle">My technical level</h6>
+        <h6 className="section-subtitle">My technical skill levels</h6>
         <div className="skill-content-container row">
           {/* frontend */}
           <SkillSet
@@ -31,14 +31,6 @@ const Skill = (props: SkillProps) => {
             subtitle={`More than ${props.yearsOfExperience} years`}
             skills={SKILL_SETS.backend}
           />
-
-          {/* dev ops */}
-          {/* <SkillSet
-            icon={<FaDev className="main-icon" />}
-            title="DevOps"
-            subtitle="More than 3 years"
-            skills={frontendSkills}
-          /> */}
         </div>
       </div>
     </div>

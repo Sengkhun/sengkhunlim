@@ -3,12 +3,18 @@ import cssLogo from "../public/logos/css-logo.png";
 import jsLogo from "../public/logos/js-logo.png";
 import bootstrapLogo from "../public/logos/bootstrap-logo.png";
 import sassLogo from "../public/logos/sass-logo.png";
-import nextsLogo from "../public/logos/nexts-logo.png";
+import nextjsLogo from "../public/logos/nextjs-logo.png";
 import reactLogo from "../public/logos/react-logo.png";
 import typescriptLogo from "../public/logos/typescript-logo.png";
-import gitlabLogo from "../public/logos/gitlab-ci-cd-logo.png";
+import gitLogo from "../public/logos/git-logo.png";
 import dockerLogo from "../public/logos/docker-logo.png";
-import digitalOceanLogo from "../public/logos/digital-ocean-logo.png";
+import googleCloudLogo from "../public/logos/google-cloud-logo.png";
+import firebaseLogo from "../public/logos/firebase-logo.png";
+import sqlLogo from "../public/logos/sql-logo.png";
+import mongoDBLogo from "../public/logos/mongo-db-logo.png";
+import graphQLLogo from "../public/logos/graphql-logo.png";
+import expressLogo from "../public/logos/express-logo.png";
+import laravelLogo from "../public/logos/laravel-logo.png";
 
 const CONSTANT = {
   title: "Sengkhun Lim | Full Stack Developer",
@@ -46,13 +52,13 @@ export const GA_CATEGORIES = {
 
 export const SKILL_SETS = {
   frontend: [
-    { label: "React & React Native", percentage: 100 },
+    { label: "Web & Mobile", percentage: 100 },
     { label: "JavaScript & Typescript", percentage: 100 },
-    { label: "HTML & CSS", percentage: 95 },
-    { label: "UX & UI", percentage: 95 },
+    { label: "Responsive Design", percentage: 100 },
+    { label: "UX & UI Principles", percentage: 100 },
   ],
   backend: [
-    { label: "API Development", percentage: 100 },
+    { label: "API Design & Development", percentage: 100 },
     { label: "Database Management", percentage: 100 },
     { label: "Cloud Hosting", percentage: 95 },
     { label: "Security and Authentication", percentage: 95 },
@@ -125,6 +131,30 @@ export const QUALIFICATION_TIMELINES = {
 
 export const TECHNOLOGIES = [
   {
+    title: "ReactJS",
+    imgSrc: reactLogo,
+    alt: "ReactJS logo",
+    link: "https://reactjs.org/",
+  },
+  {
+    title: "React Native",
+    imgSrc: reactLogo,
+    alt: "React Native logo",
+    link: "https://reactnative.dev/",
+  },
+  {
+    title: "Typescript",
+    imgSrc: typescriptLogo,
+    alt: "Typescript logo",
+    link: "https://www.typescriptlang.org/",
+  },
+  {
+    title: "JavaScript",
+    imgSrc: jsLogo,
+    alt: "JavaScript logo",
+    link: "https://www.w3schools.com/js/",
+  },
+  {
     title: "HTML",
     imgSrc: htmlLogo,
     alt: "HTML logo",
@@ -136,13 +166,6 @@ export const TECHNOLOGIES = [
     alt: "CSS logo",
     link: "https://www.w3schools.com/css/",
   },
-  { title: "JS", imgSrc: jsLogo, alt: "JS logo", link: "https://nodejs.org/" },
-  {
-    title: "Bootstrap",
-    imgSrc: bootstrapLogo,
-    alt: "Bootstrap logo",
-    link: "https://getbootstrap.com/",
-  },
   {
     title: "Sass",
     imgSrc: sassLogo,
@@ -150,28 +173,40 @@ export const TECHNOLOGIES = [
     link: "https://sass-lang.com/",
   },
   {
-    title: "Nexts.JS",
-    imgSrc: nextsLogo,
-    alt: "Nexts.JS logo",
-    link: "https://nextjs.org/",
+    title: "Google Cloud",
+    imgSrc: googleCloudLogo,
+    alt: "Google Cloud logo",
+    link: "https://cloud.google.com/",
   },
   {
-    title: "ReactJS",
-    imgSrc: reactLogo,
-    alt: "ReactJS logo",
-    link: "https://reactjs.org/",
+    title: "Firebase",
+    imgSrc: firebaseLogo,
+    alt: "Firebase logo",
+    link: "https://firebase.google.com/",
   },
   {
-    title: "Typescript",
-    imgSrc: typescriptLogo,
-    alt: "Typescript logo",
-    link: "https://www.typescriptlang.org/",
+    title: "GraphQL",
+    imgSrc: graphQLLogo,
+    alt: "GraphQL logo",
+    link: "https://graphql.org/",
   },
   {
-    title: "GitLab CI/CD",
-    imgSrc: gitlabLogo,
-    alt: "GitLab CI/CD logo",
-    link: "https://docs.gitlab.com/ee/ci/",
+    title: "SQL",
+    imgSrc: sqlLogo,
+    alt: "SQL logo",
+    link: "https://www.w3schools.com/sql/",
+  },
+  {
+    title: "MongoDB",
+    imgSrc: mongoDBLogo,
+    alt: "MongoDB logo",
+    link: "https://www.mongodb.com/",
+  },
+  {
+    title: "ExpressJS",
+    imgSrc: expressLogo,
+    alt: "Express logo",
+    link: "https://expressjs.com/",
   },
   {
     title: "Docker",
@@ -180,9 +215,21 @@ export const TECHNOLOGIES = [
     link: "https://www.docker.com/",
   },
   {
-    title: "Digital Ocean",
-    imgSrc: digitalOceanLogo,
-    alt: "Digital Ocean logo",
-    link: "https://www.digitalocean.com/",
+    title: "Git",
+    imgSrc: gitLogo,
+    alt: "Git logo",
+    link: "https://git-scm.com/",
+  },
+  {
+    title: "Nexts.JS",
+    imgSrc: nextjsLogo,
+    alt: "Nexts.JS logo",
+    link: "https://nextjs.org/",
+  },
+  {
+    title: "Laravel",
+    imgSrc: laravelLogo,
+    alt: "Laravel logo",
+    link: "https://laravel.com/",
   },
 ];

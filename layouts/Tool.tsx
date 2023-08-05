@@ -17,7 +17,7 @@ const Tool = () => {
     <div id="tool" className="section-container tool-section">
       <div className="container">
         <h1 className="section-title">Tools</h1>
-        <h6 className="section-subtitle">What I use to build this website</h6>
+        <h6 className="section-subtitle">A look into what I excel at</h6>
 
         <div className="image-container">
           {TECHNOLOGIES.map((item, idx) => (
@@ -31,6 +31,7 @@ const Tool = () => {
               onClick={() => onIconClick(item.title)}
             >
               <Image src={item.imgSrc} alt={item.alt} />
+              <span>{item.title}</span>
             </a>
           ))}
         </div>
