@@ -44,6 +44,10 @@ nav {
         height: 40px;
         width: auto;
         margin-right: 0.5rem;
+
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
       }
 
       span {
