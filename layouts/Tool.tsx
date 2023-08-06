@@ -16,7 +16,7 @@ const Tool = () => {
   return (
     <div id="tool" className="section-container tool-section">
       <div className="container">
-        <h1 className="section-title">Tools</h1>
+        <h2 className="section-title">Tools</h2>
         <h6 className="section-subtitle">A look into what I excel at</h6>
 
         <div className="image-container">

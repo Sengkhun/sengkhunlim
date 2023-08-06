@@ -13,7 +13,7 @@ const Skill = (props: SkillProps) => {
   return (
     <div id="skill" className="section-container skill-section">
       <div className="container">
-        <h1 className="section-title">Skills</h1>
+        <h2 className="section-title">Skills</h2>
         <h6 className="section-subtitle">My technical skill levels</h6>
         <div className="skill-content-container row">
           {/* frontend */}
