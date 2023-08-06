@@ -4,6 +4,7 @@ import { FiDownload } from "react-icons/fi";
 import ReactGA from "react-ga4";
 
 import CONSTANT, { GA_CATEGORIES } from "../utils/constant";
+import { stringFormatter } from "../utils/helpers";
 
 interface AboutProps {
   baseUrl: string;
@@ -27,12 +28,16 @@ const About = (props: AboutProps) => {
     link.click();
   };
 
+  const description = stringFormatter(CONSTANT.description, {
+    yearsOfExperience: props.yearsOfExperience,
+  });
+
   return (
     <div id="about" className="section-container about-section">
       <div className="container">
         <h1 className="section-title">About Me</h1>
         <h6 className="section-subtitle">My Introduction</h6>
-        <p className="description">{CONSTANT.description}</p>
+        <p className="description">{description}</p>
         <div className="info-container">
           <div className="inner-container">
             <h2>{_.padStart(props.yearsOfExperience.toString(), 2, "0")}+</h2>

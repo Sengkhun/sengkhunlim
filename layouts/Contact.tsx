@@ -299,7 +299,8 @@ const Contact = () => {
                     <input
                       ref={emailInputRef}
                       name="email"
-                      type="text"
+                      type="email"
+                      autoComplete="on"
                       className="form-control"
                       disabled={loading}
                       value={email}

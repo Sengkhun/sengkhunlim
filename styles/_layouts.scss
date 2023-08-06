@@ -33,6 +33,7 @@
 
   .description {
     margin-bottom: $margin-bottom;
+    line-height: 175%;
   }
 
   .right-panel {
@@ -129,6 +130,7 @@
       max-width: $max-width;
       text-align: center;
       margin-bottom: $margin-bottom;
+      line-height: 175%;
     }
 
     .info-container {
@@ -390,10 +392,16 @@
       .image-inner-container {
         @include transition(all 200ms ease-in-out);
         @include select-none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         margin: 1.3rem;
         overflow: visible;
+        text-decoration: none;
 
         &:hover {
+          @include text-gradient;
           transform: translateY(-0.75rem);
         }
 
@@ -402,6 +410,13 @@
           height: 80px;
           width: auto;
           overflow: visible !important;
+        }
+
+        span {
+          font-size: 1rem;
+          font-weight: 600;
+          margin-top: 0.4rem;
+          color: color(grey);
         }
 
         @include media-breakpoint-down(md) {

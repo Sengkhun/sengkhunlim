@@ -4,7 +4,7 @@ export const validateEmail = (email: string) => {
   return emailPattern.test(email);
 };
 
-export const renderEmailTemplate = (emailTemplate: string, values: any) => {
+export const stringFormatter = (emailTemplate: string, values: any) => {
   Object.keys(values).forEach((key) => {
     emailTemplate = emailTemplate.replace(
       new RegExp("{" + key + "}", "g"),

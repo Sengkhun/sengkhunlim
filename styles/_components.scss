@@ -24,15 +24,31 @@ nav {
     @include transition(all 200ms ease-in-out);
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .active {
       @include text-gradient;
       color: color(primary) !important;
     }
 
-    .logo {
-      flex: 1;
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: -0.8rem 0;
+      text-decoration: none;
+      color: color(black);
       cursor: pointer;
+
+      .logo {
+        height: 40px;
+        width: auto;
+        margin-right: 0.5rem;
+      }
+
+      span {
+        user-select: none;
+      }
     }
 
     .link-container {
