@@ -61,6 +61,7 @@ const Index = (props: IndexProps) => {
           property="og:image"
           content={`${props.baseUrl}/images/web-thumbnail.png`}
         />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sengkhun.com/" />
       </Head>
 
