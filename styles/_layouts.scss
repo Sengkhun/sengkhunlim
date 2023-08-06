@@ -267,10 +267,11 @@
 
         .qualification-year {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
 
           svg {
             color: color(grey);
+            margin-top: 0.2rem;
             margin-right: 0.5rem;
           }
 
