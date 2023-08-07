@@ -16,8 +16,8 @@ import { RiMenu3Fill } from "react-icons/ri";
 import { BiArrowToTop } from "react-icons/bi";
 import ReactGA from "react-ga4";
 
-import logo from "../public/logos/web-logo-only.png";
-import { BREAK_POINTS, GA_CATEGORIES } from "../utils/constant";
+import logo from "../../public/logos/web-logo-only.png";
+import { BREAK_POINTS, GA_CATEGORIES } from "../../utils/constant";
 
 const navbarOptions = [
   { title: "Home", href: "#home", icon: <AiOutlineHome /> },
@@ -36,7 +36,7 @@ interface sectionAttributes {
   bottom: number;
 }
 
-const Navbar = () => {
+const MainNavbar = () => {
   // states
   const [currentSection, setCurrentSection] = useState<sectionAttributes>();
   const [currentBreakpoint, setBreakpoint] = useState<string | null>(null);
@@ -318,4 +318,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default MainNavbar;

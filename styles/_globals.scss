@@ -49,6 +49,10 @@ button {
     .animate-down {
       transform: translateY(0.1rem);
     }
+
+    .animate-up {
+      transform: translateY(-0.1rem);
+    }
   }
 
   &:active {
@@ -86,11 +90,8 @@ button {
 }
 // end of input & textarea
 
-// a {
-//   color: inherit;
-//   text-decoration: none;
-// }
-
-// * {
-//   box-sizing: border-box;
-// }
+// text
+.text-gradient {
+  @include text-gradient;
+}
+// end of text

@@ -11,7 +11,7 @@ interface SkillProps {
 
 const Skill = (props: SkillProps) => {
   return (
-    <div id="skill" className="section-container skill-section">
+    <div id="skill" className="section-container">
       <div className="container">
         <h2 className="section-title">Skills</h2>
         <h3 className="section-subtitle">My technical skill levels</h3>

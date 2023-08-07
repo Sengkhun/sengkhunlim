@@ -3,7 +3,7 @@ import Head from "next/head";
 import ReactGA from "react-ga4";
 import moment from "moment";
 
-import Navbar from "../components/Navbar";
+import MainNavbar from "../components/navbars/MainNavbar";
 
 import Home from "../layouts/Home";
 import About from "../layouts/About";
@@ -41,8 +41,8 @@ const Index = (props: IndexProps) => {
   useEffect(() => {
     // send GA page event
     ReactGA.send({
-      hitType: "Page View",
-      page: "/",
+      hitType: "pageview",
+      page: window.location.href,
       title: CONSTANT.title,
     });
   }, []);
@@ -54,6 +54,7 @@ const Index = (props: IndexProps) => {
   return (
     <>
       <Head>
+        <title>{CONSTANT.title}</title>
         <meta name="description" content={description} />
         <meta property="og:title" content={CONSTANT.title} />
         <meta property="og:description" content={description} />
@@ -66,7 +67,7 @@ const Index = (props: IndexProps) => {
       </Head>
 
       <main>
-        <Navbar />
+        <MainNavbar />
         <Home />
         <About
           baseUrl={props.baseUrl}

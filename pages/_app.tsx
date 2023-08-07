@@ -14,7 +14,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         {/* tags for SEO */}
-        <title>{CONSTANT.title}</title>
         <meta name="keywords" content={CONSTANT.keywords} />
         <meta name="theme-color" content="#5b86e5" />
         <meta name="author" content={CONSTANT.author} />
