@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import ReactGA from "react-ga4";
@@ -36,18 +37,18 @@ const Footer = () => {
 
           {/* middle section */}
           <section className="site-map col col-12 col-md-5 col-lg-6">
-            <a href="#about" onClick={() => onNavClick("About")}>
+            <Link href="/#about" onClick={() => onNavClick("About")}>
               About
-            </a>
-            <a
-              href="#qualification"
+            </Link>
+            <Link
+              href="/#qualification"
               onClick={() => onNavClick("Qualification")}
             >
               Qualification
-            </a>
-            <a href="#contact" onClick={() => onNavClick("Contact")}>
+            </Link>
+            <Link href="/#contact" onClick={() => onNavClick("Contact")}>
               Contact
-            </a>
+            </Link>
           </section>
 
           {/* right section */}
