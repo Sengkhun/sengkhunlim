@@ -20,7 +20,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <meta name="author" content={CONSTANT.author} />
         <meta name="geo.region" content="AU" />
         <meta name="geo.placename" content="Adelaide, South Australia" />
-        <meta property="og:site_name" content={CONSTANT.title} />
+        <meta property="og:site_name" content={CONSTANT.siteName} />
 
         {/* tags for favicon */}
         <link rel="icon" href="/favicon/favicon.ico" />
@@ -52,10 +52,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://sengkhun.com/",
-              "@type": "WebSite",
+              "@context": "http://schema.org",
+              "@type": "Person",
               name: "Sengkhun Lim",
-              alternateName: "Khun",
+              alternateName: ["Khun", "Sengkhun", "SK"],
               url: "https://sengkhun.com/",
             }),
           }}

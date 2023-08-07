@@ -36,7 +36,7 @@ const About = (props: AboutProps) => {
     <div id="about" className="section-container about-section">
       <div className="container">
         <h2 className="section-title">About Me</h2>
-        <h6 className="section-subtitle">My Introduction</h6>
+        <h3 className="section-subtitle">My Introduction</h3>
         <p className="description">{description}</p>
         <div className="info-container">
           <div className="inner-container">

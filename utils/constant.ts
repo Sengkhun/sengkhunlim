@@ -16,6 +16,7 @@ import expressLogo from "../public/logos/express-logo.png";
 import laravelLogo from "../public/logos/laravel-logo.png";
 
 const CONSTANT = {
+  siteName: "Sengkhun Lim",
   title: "Sengkhun Lim | Full Stack Developer",
   description:
     "With a robust {yearsOfExperience}+ years of experience, I've been busy creating scalable web and mobile apps. I've got a strong connection to the health, real estate, food, and sports industries. Throughout my career, I've fine-tuned my skills to effortlessly weave the latest technology into web and app projects, always ensuring top-quality outcomes.",
