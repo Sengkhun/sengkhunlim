@@ -482,6 +482,72 @@
 }
 // end of contact
 
+// not found
+.not-found-section {
+  min-height: 70vh;
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .left-panel {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+    }
+
+    @include media-breakpoint-down(md) {
+      margin: 40px 0;
+    }
+  }
+
+  .right-panel {
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    .title {
+      font-weight: bold;
+      font-size: 4rem;
+    }
+
+    .description {
+      margin-bottom: $margin-bottom;
+      line-height: 175%;
+    }
+
+    .back-button {
+      width: auto;
+    }
+
+    @include media-breakpoint-down(md) {
+      margin: 40px 0;
+
+      .title {
+        text-align: center;
+      }
+
+      .description {
+        text-align: center;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+// end of not found
+
 // footer
 footer {
   min-height: 300px;
