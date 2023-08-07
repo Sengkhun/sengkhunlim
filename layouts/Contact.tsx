@@ -207,9 +207,9 @@ const Contact = () => {
     <div id="contact" className="section-container contact-section">
       <div className="container">
         <h2 className="section-title">Contact Me</h2>
-        <h6 className="section-subtitle">
+        <h3 className="section-subtitle">
           Get in touch for any inquiries or collaborative opportunities
-        </h6>
+        </h3>
 
         {!isSubmitted ? (
           <div className="row">

@@ -92,7 +92,7 @@ const Qualification = () => {
     <div id="qualification" className="section-container qualification-section">
       <div className="container">
         <h2 className="section-title">Qualification</h2>
-        <h6 className="section-subtitle">My career experience and journey</h6>
+        <h3 className="section-subtitle">My career experience and journey</h3>
 
         {/* qualification tab */}
         <div className="tab-container">

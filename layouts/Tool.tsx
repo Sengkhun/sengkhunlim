@@ -17,7 +17,7 @@ const Tool = () => {
     <div id="tool" className="section-container tool-section">
       <div className="container">
         <h2 className="section-title">Tools</h2>
-        <h6 className="section-subtitle">A look into what I excel at</h6>
+        <h3 className="section-subtitle">A look into what I excel at</h3>
 
         <div className="image-container">
           {TECHNOLOGIES.map((item, idx) => (
