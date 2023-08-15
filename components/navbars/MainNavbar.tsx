@@ -15,9 +15,12 @@ import { IoMdMore } from "react-icons/io";
 import { RiMenu3Fill } from "react-icons/ri";
 import { BiArrowToTop } from "react-icons/bi";
 import ReactGA from "react-ga4";
+import { useDispatch, useSelector } from "react-redux";
 
 import logo from "../../public/logos/web-logo-only.png";
 import { BREAK_POINTS, GA_CATEGORIES } from "../../utils/constant";
+import { AppState } from "../../store";
+import { setSectionVisible } from "../../store/navSlice";
 
 const navbarOptions = [
   { title: "Home", href: "#home", icon: <AiOutlineHome /> },
@@ -37,6 +40,9 @@ interface sectionAttributes {
 }
 
 const MainNavbar = () => {
+  // hooks
+  const dispatch = useDispatch();
+
   // states
   const [currentSection, setCurrentSection] = useState<sectionAttributes>();
   const [currentBreakpoint, setBreakpoint] = useState<string | null>(null);
@@ -46,6 +52,8 @@ const MainNavbar = () => {
   const navMobileRef = useRef<HTMLDivElement>(null);
   const ArrowTopRef = useRef<HTMLAnchorElement>(null);
   const listSectionsRef = useRef<sectionAttributes[]>([]);
+  const activeNavOffsetRef = useRef<number>(0);
+  const sectionAnimationOffsetRef = useRef<number>(0);
 
   const onOpenMobileNav = () => {
     if (navMobileRef.current) {
@@ -81,6 +89,8 @@ const MainNavbar = () => {
 
       if (index === 0) {
         offest = -top;
+        activeNavOffsetRef.current = (bottom - top) * 0.25;
+        sectionAnimationOffsetRef.current = (bottom - top) * 0.75;
       }
 
       // get position of component start from 0px
@@ -96,15 +106,23 @@ const MainNavbar = () => {
   const handleActiveNavSection = (currentScrollPos: number) => {
     for (let index = 0; index < listSectionsRef.current.length; index++) {
       const section = listSectionsRef.current[index];
-      if (currentScrollPos > section.top && currentScrollPos < section.bottom) {
+      if (
+        currentScrollPos + sectionAnimationOffsetRef.current > section.top &&
+        currentScrollPos + sectionAnimationOffsetRef.current < section.bottom
+      ) {
+        dispatch(setSectionVisible(section.id));
+      }
+
+      if (
+        currentScrollPos + activeNavOffsetRef.current > section.top &&
+        currentScrollPos + activeNavOffsetRef.current < section.bottom
+      ) {
         setCurrentSection(section);
-        break;
       }
     }
   };
 
   useEffect(() => {
-    var scrollOffet = 50;
     var windowHeight = window.innerHeight;
     var prevWidth = window.innerWidth;
     if (prevWidth < BREAK_POINTS.md) {
@@ -119,7 +137,7 @@ const MainNavbar = () => {
     listSectionsRef.current = handleListSections();
 
     // handle initial active nav section
-    handleActiveNavSection(window.scrollY + scrollOffet);
+    handleActiveNavSection(window.scrollY);
 
     window.onresize = throttle(() => {
       const currentWidth = window.innerWidth;
@@ -138,7 +156,7 @@ const MainNavbar = () => {
 
       // get new list of sections' size and id
       listSectionsRef.current = handleListSections();
-    }, 200);
+    }, 500);
 
     var minHeighToDisplay = 300;
     window.onscroll = throttle(() => {
@@ -154,7 +172,7 @@ const MainNavbar = () => {
         }
 
         // handle nav active class
-        handleActiveNavSection(window.scrollY + scrollOffet);
+        handleActiveNavSection(window.scrollY);
       }
 
       // handle arrow to top
@@ -172,7 +190,7 @@ const MainNavbar = () => {
           }
         }
       }
-    }, 200);
+    }, 500);
 
     return () => {
       window.onscroll = null;

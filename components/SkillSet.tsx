@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import { IconBaseProps } from "react-icons/";
 import { MdKeyboardArrowUp } from "react-icons/md";
+import AnimatedSkillBar from "./animated/AnimatedSkillBar";
 
-interface skillList {
+interface SkillList {
   label: string;
   percentage: number;
 }
 
-interface Props {
+interface SkillSetProps {
+  visible: boolean;
   icon: React.ReactElement<IconBaseProps>;
   title: string;
   subtitle: string;
-  skills: Array<skillList>;
+  skills: Array<SkillList>;
 }
 
-const SkillSet = (props: Props) => {
+const SkillSet = (props: SkillSetProps) => {
   // states
   const [expanded, setExpanded] = useState(true);
 
@@ -38,15 +40,13 @@ const SkillSet = (props: Props) => {
         {/* drop down */}
         <div className={`dropdown-item-container ${expanded ? "active" : ""}`}>
           {props.skills.map((skill, index) => (
-            <div key={index}>
-              <div className="dropdown-label-container">
-                <span className="label">{skill.label}</span>
-                <span className="percentage">{skill.percentage}%</span>
-              </div>
-              <div className="progress-bar">
-                <span style={{ width: `${skill.percentage}%` }} />
-              </div>
-            </div>
+            <AnimatedSkillBar
+              key={index}
+              animated={props.visible}
+              label={skill.label}
+              percentage={skill.percentage}
+              delay={index * 300}
+            />
           ))}
         </div>
       </div>
