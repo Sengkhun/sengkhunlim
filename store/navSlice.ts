@@ -7,6 +7,7 @@ export interface NavState {
   visibleSkill: boolean;
   visibleQualification: boolean;
   visibleTool: boolean;
+  visibleContact: boolean;
 }
 
 // Initial state
@@ -15,6 +16,7 @@ const initialState: NavState = {
   visibleSkill: false,
   visibleQualification: false,
   visibleTool: false,
+  visibleContact: false,
 };
 
 // Actual Slice
@@ -41,6 +43,13 @@ export const navSlice = createSlice({
           state.visibleSkill = true;
           state.visibleQualification = true;
           state.visibleTool = true;
+          break;
+        case "#contact":
+          state.visibleAbout = true;
+          state.visibleSkill = true;
+          state.visibleQualification = true;
+          state.visibleTool = true;
+          state.visibleContact = true;
           break;
         default:
           break;

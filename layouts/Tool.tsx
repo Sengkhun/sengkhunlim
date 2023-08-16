@@ -17,9 +17,10 @@ const Tool = () => {
     pause: !visibleTool,
   });
   const [transitions, api] = useTransition(TECHNOLOGIES, () => ({
-    from: { opacity: 0, x: 100 },
-    enter: (item, index) => ({ opacity: 1, x: 0, delay: index * 100 }),
+    from: { opacity: 0, scale: 0 },
+    enter: { opacity: 1, scale: 1 },
     config: { duration: 200 },
+    trail: 100,
   }));
 
   useEffect(() => {
@@ -47,18 +48,18 @@ const Tool = () => {
         <h3 className="section-subtitle">A look into what I excel at</h3>
 
         <div className="image-container">
-          {transitions((style, item) => (
+          {transitions((style, tool) => (
             <animated.div style={style}>
               <a
-                title={item.title}
+                title={tool.title}
                 className="image-inner-container"
-                href={item.link}
-                target={item.link ? "_blank" : "_self"}
+                href={tool.link}
+                target={tool.link ? "_blank" : "_self"}
                 rel="noopener noreferrer"
-                onClick={() => onIconClick(item.title)}
+                onClick={() => onIconClick(tool.title)}
               >
-                <Image src={item.imgSrc} alt={item.alt} />
-                <span>{item.title}</span>
+                <Image src={tool.imgSrc} alt={tool.alt} />
+                <span>{tool.title}</span>
               </a>
             </animated.div>
           ))}

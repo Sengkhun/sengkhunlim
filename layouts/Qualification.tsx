@@ -1,12 +1,15 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { MdWorkOutline, MdOutlineSchool } from "react-icons/md";
 import { FiCalendar } from "react-icons/fi";
 import { FaCircle } from "react-icons/fa";
 import { PiMedal } from "react-icons/pi";
 import ReactGA from "react-ga4";
+import { useSelector } from "react-redux";
+import { useSpring, animated, useTransition } from "@react-spring/web";
 
 import { GA_CATEGORIES, QUALIFICATION_TIMELINES } from "../utils/constant";
+import { AppState } from "../store";
 
 const qualificationCategories = [
   { label: "Work", icon: <MdWorkOutline /> },
@@ -21,8 +24,31 @@ const allTimeline = [
 ];
 
 const Qualification = () => {
+  // hooks
+  const visibleQualification = useSelector(
+    (state: AppState) => state.nav?.visibleQualification
+  );
+  const containerStyle = useSpring({
+    from: { opacity: 0, y: 50 },
+    to: { opacity: 1, y: 0 },
+    config: { duration: 500 },
+    pause: !visibleQualification,
+  });
+  const [transitions, api] = useTransition(qualificationCategories, () => ({
+    from: { opacity: 0, x: -100 },
+    enter: { opacity: 1, x: 0 },
+    config: { duration: 300 },
+    trail: 200,
+  }));
+
   // states
   const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    if (visibleQualification) {
+      api.start();
+    }
+  }, [visibleQualification]);
 
   const onTabClick = (idx: number, label: string) => {
     setActiveTab(idx);
@@ -89,14 +115,29 @@ const Qualification = () => {
   };
 
   return (
-    <div id="qualification" className="section-container qualification-section">
+    <animated.div
+      id="qualification"
+      className="section-container qualification-section"
+      style={containerStyle}
+    >
       <div className="container">
         <h2 className="section-title">Qualification</h2>
         <h3 className="section-subtitle">My career experience and journey</h3>
 
         {/* qualification tab */}
         <div className="tab-container">
-          {qualificationCategories.map((qualification, idx) => (
+          {transitions((style, qualification, transition, idx) => (
+            <animated.div
+              style={style}
+              title={qualification.label}
+              className={`tab-item ${activeTab === idx && "active"}`}
+              onClick={() => onTabClick(idx, qualification.label)}
+            >
+              {qualification.icon}
+              <span>{qualification.label}</span>
+            </animated.div>
+          ))}
+          {/* {qualificationCategories.map((qualification, idx) => (
             <div
               key={`${qualification.label} ${idx}`}
               title={qualification.label}
@@ -106,7 +147,7 @@ const Qualification = () => {
               {qualification.icon}
               <span>{qualification.label}</span>
             </div>
-          ))}
+          ))} */}
         </div>
 
         {/* timeline */}
@@ -114,7 +155,7 @@ const Qualification = () => {
           {allTimeline.map(renderTimeline)}
         </SwipeableViews>
       </div>
-    </div>
+    </animated.div>
   );
 };
 
