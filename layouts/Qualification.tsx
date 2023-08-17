@@ -78,7 +78,7 @@ const Qualification = () => {
             <AnimatedTimeline
               key={timelineIdx}
               animated={visibleQualification && activeTab === timelineIdx}
-              delay={timelineIdx === 0 ? 1000 : 0}
+              delay={timelineIdx === 0 ? 1000 : 300}
               timeline={timeline}
             />
           </div>
@@ -111,9 +111,9 @@ const Qualification = () => {
         {/* timeline */}
         <Swiper
           ref={swiperRef}
-          spaceBetween={0}
+          spaceBetween={50}
           slidesPerView={1}
-          onSlideChange={({ activeIndex }) => setActiveTab(activeIndex)}
+          onActiveIndexChange={({ activeIndex }) => setActiveTab(activeIndex)}
           onSwiper={setSwiperRef}
         >
           {allTimeline.map(renderTimeline)}

@@ -12,8 +12,7 @@ const AnimatedNumber = (props: AnimatedNumberProps) => {
   const animatedNumber = useSpring({
     number: props.number,
     from: { number: 0 },
-    config: { duration: 2000 },
-    delay: 500,
+    config: { duration: 1500 },
     pause: !props.animated,
   });
 

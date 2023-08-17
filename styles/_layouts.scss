@@ -240,6 +240,10 @@
       }
     }
 
+    .swiper-initialized {
+      z-index: 0;
+    }
+
     .qualification-timeline-container {
       display: flex;
       justify-content: center;
