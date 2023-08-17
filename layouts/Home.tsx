@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { AiOutlineSend } from "react-icons/ai";
 import ReactGA from "react-ga4";
+import { useTransition, animated } from "@react-spring/web";
 
 import ProfilePicture from "../public/images/profile-picture.png";
 import ProfilePictureSquare from "../public/images/profile-picture-square.png";
@@ -18,22 +19,39 @@ const Home = () => {
     window.location.href = "#contact";
   };
 
+  const content = [
+    <h1 key="title" className="section-title">
+      Hi, I&apos;m Khun
+    </h1>,
+    <h3 key="subtitle" className="section-subtitle">
+      Full Stack Developer
+    </h3>,
+    <p key="description" className="description">
+      I love turning ideas into functional and elegant digital solutions. From
+      front-end finesse to back-end expertise, I&apos;ve got you covered.
+      Let&apos;s bring your visions to life!
+    </p>,
+    <button key="button" onClick={onContactClick}>
+      Contact Me <AiOutlineSend />
+    </button>,
+  ];
+
+  // hooks
+  const transitions = useTransition(content, {
+    from: { opacity: 0, transform: "translateY(50px)" },
+    enter: { opacity: 1, transform: "translateY(0)" },
+    trail: 300,
+  });
+
   return (
     <div id="home" className="section-container home-section">
       <div className="container">
         <div className="row">
           {/* left panel */}
           <div className="left-panel order-last order-md-first col-12 col-md-6">
-            <h1 className="section-title">Hi, I&apos;m Khun</h1>
-            <h3 className="section-subtitle">Full Stack Developer</h3>
-            <p className="description">
-              I love turning ideas into functional and elegant digital
-              solutions. From front-end finesse to back-end expertise, I&apos;ve
-              got you covered. Let&apos;s bring your visions to life!
-            </p>
-            <button onClick={onContactClick}>
-              Contact Me <AiOutlineSend />
-            </button>
+            {transitions((style, item) => (
+              <animated.div style={style}>{item}</animated.div>
+            ))}
           </div>
 
           {/* right panel */}
