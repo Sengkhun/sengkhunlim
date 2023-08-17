@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useSpring, animated } from "@react-spring/web";
 
 import SkillSet from "../components/SkillSet";
-import { SKILL_SETS } from "../utils/constant";
+import { ANIMATION_CONFIG, SKILL_SETS } from "../utils/constant";
 import { AppState } from "../store";
 
 interface SkillProps {
@@ -20,17 +20,13 @@ const Skill = (props: SkillProps) => {
   const containerStyle = useSpring({
     from: { opacity: 0, y: 50 },
     to: { opacity: 1, y: 0 },
-    config: { duration: 500 },
+    config: { duration: ANIMATION_CONFIG.duration },
     pause: !visibleSkill,
   });
 
   return (
-    <animated.div
-      id="skill"
-      className="section-container"
-      style={containerStyle}
-    >
-      <div className="container">
+    <div id="skill" className="section-container">
+      <animated.div className="container" style={containerStyle}>
         <h2 className="section-title">Skills</h2>
         <h3 className="section-subtitle">My technical skill levels</h3>
         <div className="skill-content-container row">
@@ -52,8 +48,8 @@ const Skill = (props: SkillProps) => {
             skills={SKILL_SETS.backend}
           />
         </div>
-      </div>
-    </animated.div>
+      </animated.div>
+    </div>
   );
 };
 

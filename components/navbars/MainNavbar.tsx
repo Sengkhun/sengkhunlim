@@ -15,11 +15,10 @@ import { IoMdMore } from "react-icons/io";
 import { RiMenu3Fill } from "react-icons/ri";
 import { BiArrowToTop } from "react-icons/bi";
 import ReactGA from "react-ga4";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import logo from "../../public/logos/web-logo-only.png";
 import { BREAK_POINTS, GA_CATEGORIES } from "../../utils/constant";
-import { AppState } from "../../store";
 import { setSectionVisible } from "../../store/navSlice";
 
 const navbarOptions = [
@@ -89,7 +88,7 @@ const MainNavbar = () => {
 
       if (index === 0) {
         offest = -top;
-        activeNavOffsetRef.current = (bottom - top) * 0.25;
+        activeNavOffsetRef.current = (bottom - top) * 0.35;
         sectionAnimationOffsetRef.current = (bottom - top) * 0.75;
       }
 

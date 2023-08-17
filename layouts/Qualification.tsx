@@ -9,7 +9,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 import AnimatedTimeline from "../components/animated/AnimatedTimeline";
-import { GA_CATEGORIES, QUALIFICATION_TIMELINES } from "../utils/constant";
+import {
+  ANIMATION_CONFIG,
+  GA_CATEGORIES,
+  QUALIFICATION_TIMELINES,
+} from "../utils/constant";
 import { AppState } from "../store";
 
 const qualificationCategories = [
@@ -32,7 +36,7 @@ const Qualification = () => {
   const containerStyle = useSpring({
     from: { opacity: 0, y: 50 },
     to: { opacity: 1, y: 0 },
-    config: { duration: 500 },
+    config: { duration: ANIMATION_CONFIG.duration },
     pause: !visibleQualification,
   });
   const [tabTransitions, tabApi] = useTransition(
@@ -84,44 +88,38 @@ const Qualification = () => {
   };
 
   return (
-    <>
-      <animated.div
-        id="qualification"
-        className="section-container qualification-section"
-        style={containerStyle}
-      >
-        <div className="container">
-          <h2 className="section-title">Qualification</h2>
-          <h3 className="section-subtitle">My career experience and journey</h3>
+    <div id="qualification" className="section-container qualification-section">
+      <animated.div className="container" style={containerStyle}>
+        <h2 className="section-title">Qualification</h2>
+        <h3 className="section-subtitle">My career experience and journey</h3>
 
-          {/* qualification tab */}
-          <div className="tab-container">
-            {tabTransitions((style, qualification, transition, idx) => (
-              <animated.div
-                style={style}
-                title={qualification.label}
-                className={`tab-item ${activeTab === idx && "active"}`}
-                onClick={() => onTabClick(idx, qualification.label)}
-              >
-                {qualification.icon}
-                <span>{qualification.label}</span>
-              </animated.div>
-            ))}
-          </div>
-
-          {/* timeline */}
-          <Swiper
-            ref={swiperRef}
-            spaceBetween={0}
-            slidesPerView={1}
-            onSlideChange={({ activeIndex }) => setActiveTab(activeIndex)}
-            onSwiper={setSwiperRef}
-          >
-            {allTimeline.map(renderTimeline)}
-          </Swiper>
+        {/* qualification tab */}
+        <div className="tab-container">
+          {tabTransitions((style, qualification, transition, idx) => (
+            <animated.div
+              style={style}
+              title={qualification.label}
+              className={`tab-item ${activeTab === idx && "active"}`}
+              onClick={() => onTabClick(idx, qualification.label)}
+            >
+              {qualification.icon}
+              <span>{qualification.label}</span>
+            </animated.div>
+          ))}
         </div>
+
+        {/* timeline */}
+        <Swiper
+          ref={swiperRef}
+          spaceBetween={0}
+          slidesPerView={1}
+          onSlideChange={({ activeIndex }) => setActiveTab(activeIndex)}
+          onSwiper={setSwiperRef}
+        >
+          {allTimeline.map(renderTimeline)}
+        </Swiper>
       </animated.div>
-    </>
+    </div>
   );
 };
 

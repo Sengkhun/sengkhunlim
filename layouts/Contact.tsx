@@ -18,7 +18,7 @@ import Label from "../components/Label";
 import Loader from "../components/Loader";
 
 import ConfirmedImage from "../public/images/contact-form-submitted-confirm.svg";
-import CONSTANT, { GA_CATEGORIES } from "../utils/constant";
+import CONSTANT, { ANIMATION_CONFIG, GA_CATEGORIES } from "../utils/constant";
 import { validateEmail } from "../utils/helpers";
 import { AppState } from "../store";
 
@@ -42,7 +42,7 @@ const Contact = () => {
   const containerStyle = useSpring({
     from: { opacity: 0, y: 50 },
     to: { opacity: 1, y: 0 },
-    config: { duration: 500 },
+    config: { duration: ANIMATION_CONFIG.duration },
     pause: !visibleContact,
   });
 
@@ -218,12 +218,8 @@ const Contact = () => {
   };
 
   return (
-    <animated.div
-      id="contact"
-      className="section-container contact-section"
-      style={containerStyle}
-    >
-      <div className="container">
+    <div id="contact" className="section-container contact-section">
+      <animated.div className="container" style={containerStyle}>
         <h2 className="section-title">Contact Me</h2>
         <h3 className="section-subtitle">
           Get in touch for any inquiries or collaborative opportunities
@@ -409,8 +405,8 @@ const Contact = () => {
             </p>
           </div>
         ) : null}
-      </div>
-    </animated.div>
+      </animated.div>
+    </div>
   );
 };
 
