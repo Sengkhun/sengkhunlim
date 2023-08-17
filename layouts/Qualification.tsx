@@ -1,11 +1,12 @@
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
-import SwipeableViews from "react-swipeable-views";
 import { MdWorkOutline, MdOutlineSchool } from "react-icons/md";
 import { PiMedal } from "react-icons/pi";
 import ReactGA from "react-ga4";
 import { useSelector } from "react-redux";
 import { useSpring, animated, useTransition } from "@react-spring/web";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 import AnimatedTimeline from "../components/animated/AnimatedTimeline";
 import { GA_CATEGORIES, QUALIFICATION_TIMELINES } from "../utils/constant";
@@ -45,6 +46,7 @@ const Qualification = () => {
   );
 
   // states
+  const [swiperRef, setSwiperRef] = useState<any>(null);
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
@@ -55,6 +57,7 @@ const Qualification = () => {
 
   const onTabClick = (idx: number, label: string) => {
     setActiveTab(idx);
+    swiperRef.slideTo(idx);
 
     // send GA event
     ReactGA.event({
@@ -63,60 +66,62 @@ const Qualification = () => {
     });
   };
 
-  const onTabChange = (idx: number) => {
-    setActiveTab(idx);
-  };
-
   const renderTimeline = (timeline: any, timelineIdx: any) => {
     return (
-      <div key={timelineIdx} className="qualification-timeline-container">
-        <div className="qualification-timeline">
-          <AnimatedTimeline
-            key={timelineIdx}
-            animated={visibleQualification && activeTab === timelineIdx}
-            delay={timelineIdx === 0 ? 1000 : 0}
-            timeline={timeline}
-          />
+      <SwiperSlide key={timelineIdx}>
+        <div className="qualification-timeline-container">
+          <div className="qualification-timeline">
+            <AnimatedTimeline
+              key={timelineIdx}
+              animated={visibleQualification && activeTab === timelineIdx}
+              delay={timelineIdx === 0 ? 1000 : 0}
+              timeline={timeline}
+            />
+          </div>
         </div>
-      </div>
+      </SwiperSlide>
     );
   };
 
   return (
-    <animated.div
-      id="qualification"
-      className="section-container qualification-section"
-      style={containerStyle}
-    >
-      <div className="container">
-        <h2 className="section-title">Qualification</h2>
-        <h3 className="section-subtitle">My career experience and journey</h3>
+    <>
+      <animated.div
+        id="qualification"
+        className="section-container qualification-section"
+        style={containerStyle}
+      >
+        <div className="container">
+          <h2 className="section-title">Qualification</h2>
+          <h3 className="section-subtitle">My career experience and journey</h3>
 
-        {/* qualification tab */}
-        <div className="tab-container">
-          {tabTransitions((style, qualification, transition, idx) => (
-            <animated.div
-              style={style}
-              title={qualification.label}
-              className={`tab-item ${activeTab === idx && "active"}`}
-              onClick={() => onTabClick(idx, qualification.label)}
-            >
-              {qualification.icon}
-              <span>{qualification.label}</span>
-            </animated.div>
-          ))}
+          {/* qualification tab */}
+          <div className="tab-container">
+            {tabTransitions((style, qualification, transition, idx) => (
+              <animated.div
+                style={style}
+                title={qualification.label}
+                className={`tab-item ${activeTab === idx && "active"}`}
+                onClick={() => onTabClick(idx, qualification.label)}
+              >
+                {qualification.icon}
+                <span>{qualification.label}</span>
+              </animated.div>
+            ))}
+          </div>
+
+          {/* timeline */}
+          <Swiper
+            ref={swiperRef}
+            spaceBetween={0}
+            slidesPerView={1}
+            onSlideChange={({ activeIndex }) => setActiveTab(activeIndex)}
+            onSwiper={setSwiperRef}
+          >
+            {allTimeline.map(renderTimeline)}
+          </Swiper>
         </div>
-
-        {/* timeline */}
-        <SwipeableViews
-          index={activeTab}
-          onChangeIndex={onTabChange}
-          style={{}}
-        >
-          {allTimeline.map(renderTimeline)}
-        </SwipeableViews>
-      </div>
-    </animated.div>
+      </animated.div>
+    </>
   );
 };
 

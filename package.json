@@ -28,11 +28,10 @@
     "react-ga4": "^2.1.0",
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.2",
-    "react-slick": "^0.29.0",
-    "react-swipeable-views": "^0.14.0",
     "react-transition-group": "^4.4.5",
     "sass": "^1.64.2",
-    "sharp": "^0.32.4"
+    "sharp": "^0.32.4",
+    "swiper": "^10.1.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.196",
