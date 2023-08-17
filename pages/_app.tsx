@@ -1,17 +1,20 @@
 import Script from "next/script";
+import Head from "next/head";
+import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
 import ReactGA from "react-ga4";
 
 import "../styles/main.scss";
-import Head from "next/head";
-import type { AppProps } from "next/app";
 
+import { wrapper } from "../store";
 import CONSTANT from "../utils/constant";
 
 ReactGA.initialize("G-QNL6FQWWHW");
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, ...rest }: AppProps) => {
+  const { store, props } = wrapper.useWrappedStore(rest);
   return (
-    <>
+    <Provider store={store}>
       <Head>
         {/* tags for SEO */}
         <meta name="keywords" content={CONSTANT.keywords} />
@@ -68,8 +71,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         crossOrigin="anonymous"
       />
 
-      <Component {...pageProps} />
-    </>
+      <Component {...props.pageProps} />
+    </Provider>
   );
 };
 

@@ -2,9 +2,13 @@ import _ from "lodash";
 import React from "react";
 import { FiDownload } from "react-icons/fi";
 import ReactGA from "react-ga4";
+import { useSelector } from "react-redux";
+import { useSpring, animated } from "@react-spring/web";
 
+import AnimatedNumber from "../components/animated/AnimatedNumber";
 import CONSTANT, { GA_CATEGORIES } from "../utils/constant";
 import { stringFormatter } from "../utils/helpers";
+import { AppState } from "../store";
 
 interface AboutProps {
   baseUrl: string;
@@ -12,6 +16,17 @@ interface AboutProps {
 }
 
 const About = (props: AboutProps) => {
+  // hooks
+  const visibleAbout = useSelector(
+    (state: AppState) => state.nav?.visibleAbout
+  );
+  const containerStyle = useSpring({
+    from: { opacity: 0, y: 50 },
+    to: { opacity: 1, y: 0 },
+    config: { duration: 500 },
+    pause: !visibleAbout,
+  });
+
   const onDownloadClick = () => {
     // send GA event
     ReactGA.event({
@@ -33,22 +48,36 @@ const About = (props: AboutProps) => {
   });
 
   return (
-    <div id="about" className="section-container about-section">
+    <animated.div
+      id="about"
+      className="section-container about-section"
+      style={containerStyle}
+    >
       <div className="container">
         <h2 className="section-title">About Me</h2>
         <h3 className="section-subtitle">My Introduction</h3>
         <p className="description">{description}</p>
         <div className="info-container">
           <div className="inner-container">
-            <h2>{_.padStart(props.yearsOfExperience.toString(), 2, "0")}+</h2>
+            <div className="animated-number">
+              <AnimatedNumber
+                number={props.yearsOfExperience}
+                animated={visibleAbout}
+              />
+              +
+            </div>
             <span>Years experience</span>
           </div>
           <div className="inner-container">
-            <h2>12+</h2>
+            <div className="animated-number">
+              <AnimatedNumber number={12} animated={visibleAbout} />+
+            </div>
             <span>Completed projects</span>
           </div>
           <div className="inner-container">
-            <h2>03+</h2>
+            <div className="animated-number">
+              <AnimatedNumber number={3} animated={visibleAbout} />+
+            </div>
             <span>Company worked</span>
           </div>
         </div>
@@ -56,7 +85,7 @@ const About = (props: AboutProps) => {
           Download CV <FiDownload className="animate-down" />
         </button>
       </div>
-    </div>
+    </animated.div>
   );
 };
 

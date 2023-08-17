@@ -11,13 +11,16 @@ import { AiOutlineSend } from "react-icons/ai";
 import ReactGA from "react-ga4";
 import Image from "next/image";
 import { isMobile } from "react-device-detect";
+import { useSelector } from "react-redux";
+import { useSpring, animated } from "@react-spring/web";
 
 import Label from "../components/Label";
 import Loader from "../components/Loader";
 
+import ConfirmedImage from "../public/images/contact-form-submitted-confirm.svg";
 import CONSTANT, { GA_CATEGORIES } from "../utils/constant";
 import { validateEmail } from "../utils/helpers";
-import ConfirmedImage from "../public/images/contact-form-submitted-confirm.svg";
+import { AppState } from "../store";
 
 interface ErrorMessages {
   firstName?: string;
@@ -32,6 +35,17 @@ interface ErrorMessages {
 const MAXIMUM_MESSAGE_LENGTH = 1000;
 
 const Contact = () => {
+  // hooks
+  const visibleContact = useSelector(
+    (state: AppState) => state.nav?.visibleContact
+  );
+  const containerStyle = useSpring({
+    from: { opacity: 0, y: 50 },
+    to: { opacity: 1, y: 0 },
+    config: { duration: 500 },
+    pause: !visibleContact,
+  });
+
   // states
   const [loading, setLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -204,7 +218,11 @@ const Contact = () => {
   };
 
   return (
-    <div id="contact" className="section-container contact-section">
+    <animated.div
+      id="contact"
+      className="section-container contact-section"
+      style={containerStyle}
+    >
       <div className="container">
         <h2 className="section-title">Contact Me</h2>
         <h3 className="section-subtitle">
@@ -392,7 +410,7 @@ const Contact = () => {
           </div>
         ) : null}
       </div>
-    </div>
+    </animated.div>
   );
 };
 
