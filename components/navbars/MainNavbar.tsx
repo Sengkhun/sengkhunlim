@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { throttle } from "lodash";
@@ -102,24 +102,27 @@ const MainNavbar = () => {
     return listSections;
   };
 
-  const handleActiveNavSection = (currentScrollPos: number) => {
-    for (let index = 0; index < listSectionsRef.current.length; index++) {
-      const section = listSectionsRef.current[index];
-      if (
-        currentScrollPos + sectionAnimationOffsetRef.current > section.top &&
-        currentScrollPos + sectionAnimationOffsetRef.current < section.bottom
-      ) {
-        dispatch(setSectionVisible(section.id));
-      }
+  const handleActiveNavSection = useCallback(
+    (currentScrollPos: number) => {
+      for (let index = 0; index < listSectionsRef.current.length; index++) {
+        const section = listSectionsRef.current[index];
+        if (
+          currentScrollPos + sectionAnimationOffsetRef.current > section.top &&
+          currentScrollPos + sectionAnimationOffsetRef.current < section.bottom
+        ) {
+          dispatch(setSectionVisible(section.id));
+        }
 
-      if (
-        currentScrollPos + activeNavOffsetRef.current > section.top &&
-        currentScrollPos + activeNavOffsetRef.current < section.bottom
-      ) {
-        setCurrentSection(section);
+        if (
+          currentScrollPos + activeNavOffsetRef.current > section.top &&
+          currentScrollPos + activeNavOffsetRef.current < section.bottom
+        ) {
+          setCurrentSection(section);
+        }
       }
-    }
-  };
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     var windowHeight = window.innerHeight;
@@ -195,7 +198,7 @@ const MainNavbar = () => {
       window.onscroll = null;
       window.onresize = null;
     };
-  }, []);
+  }, [handleActiveNavSection]);
 
   const onNavClick = (title: string) => {
     // send GA event
