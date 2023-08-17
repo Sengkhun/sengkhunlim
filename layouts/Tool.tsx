@@ -4,7 +4,11 @@ import ReactGA from "react-ga4";
 import { useSelector } from "react-redux";
 import { useSpring, animated, useTransition } from "@react-spring/web";
 
-import { GA_CATEGORIES, TECHNOLOGIES } from "../utils/constant";
+import {
+  ANIMATION_CONFIG,
+  GA_CATEGORIES,
+  TECHNOLOGIES,
+} from "../utils/constant";
 import { AppState } from "../store";
 
 const Tool = () => {
@@ -13,7 +17,7 @@ const Tool = () => {
   const containerStyle = useSpring({
     from: { opacity: 0, y: 50 },
     to: { opacity: 1, y: 0 },
-    config: { duration: 500 },
+    config: { duration: ANIMATION_CONFIG.duration },
     pause: !visibleTool,
   });
   const [transitions, api] = useTransition(TECHNOLOGIES, () => ({
@@ -38,12 +42,8 @@ const Tool = () => {
   };
 
   return (
-    <animated.div
-      id="tool"
-      className="section-container tool-section"
-      style={containerStyle}
-    >
-      <div className="container">
+    <div id="tool" className="section-container tool-section">
+      <animated.div className="container" style={containerStyle}>
         <h2 className="section-title">Tools</h2>
         <h3 className="section-subtitle">A look into what I excel at</h3>
 
@@ -64,8 +64,8 @@ const Tool = () => {
             </animated.div>
           ))}
         </div>
-      </div>
-    </animated.div>
+      </animated.div>
+    </div>
   );
 };
 

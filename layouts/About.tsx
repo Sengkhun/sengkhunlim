@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useSpring, animated } from "@react-spring/web";
 
 import AnimatedNumber from "../components/animated/AnimatedNumber";
-import CONSTANT, { GA_CATEGORIES } from "../utils/constant";
+import CONSTANT, { ANIMATION_CONFIG, GA_CATEGORIES } from "../utils/constant";
 import { stringFormatter } from "../utils/helpers";
 import { AppState } from "../store";
 
@@ -23,7 +23,7 @@ const About = (props: AboutProps) => {
   const containerStyle = useSpring({
     from: { opacity: 0, y: 50 },
     to: { opacity: 1, y: 0 },
-    config: { duration: 500 },
+    config: { duration: ANIMATION_CONFIG.duration },
     pause: !visibleAbout,
   });
 
@@ -48,12 +48,8 @@ const About = (props: AboutProps) => {
   });
 
   return (
-    <animated.div
-      id="about"
-      className="section-container about-section"
-      style={containerStyle}
-    >
-      <div className="container">
+    <div id="about" className="section-container about-section">
+      <animated.div className="container" style={containerStyle}>
         <h2 className="section-title">About Me</h2>
         <h3 className="section-subtitle">My Introduction</h3>
         <p className="description">{description}</p>
@@ -84,8 +80,8 @@ const About = (props: AboutProps) => {
         <button title="Download" onClick={onDownloadClick}>
           Download CV <FiDownload className="animate-down" />
         </button>
-      </div>
-    </animated.div>
+      </animated.div>
+    </div>
   );
 };
 

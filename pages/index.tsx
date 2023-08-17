@@ -60,7 +60,7 @@ const Index = (props: IndexProps) => {
         <meta property="og:description" content={description} />
         <meta
           property="og:image"
-          content={`${props.baseUrl}/images/web-thumbnail.png`}
+          content={`${props.baseUrl}/images/web-thumbnail.jpg`}
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sengkhun.com/" />

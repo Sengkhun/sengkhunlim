@@ -34,6 +34,10 @@ const CONSTANT = {
 
 export default CONSTANT;
 
+export const ANIMATION_CONFIG = {
+  duration: 400,
+};
+
 export const BREAK_POINTS = {
   sm: 576,
   md: 768,

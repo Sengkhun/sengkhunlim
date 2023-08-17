@@ -38,9 +38,9 @@ const Home = () => {
 
   // hooks
   const transitions = useTransition(content, {
-    from: { opacity: 0, transform: "translateY(50px)" },
-    enter: { opacity: 1, transform: "translateY(0)" },
-    trail: 300,
+    from: { opacity: 0, y: 50 },
+    enter: { opacity: 1, y: 0 },
+    trail: 200,
   });
 
   return (
