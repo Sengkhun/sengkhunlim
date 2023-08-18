@@ -23,9 +23,9 @@ const Home = () => {
     <h1 key="title" className="section-title">
       Hi, I&apos;m Khun
     </h1>,
-    <h3 key="subtitle" className="section-subtitle">
+    <h2 key="subtitle" className="section-subtitle">
       Full Stack Developer
-    </h3>,
+    </h2>,
     <p key="description" className="description">
       I love turning ideas into functional and elegant digital solutions. From
       front-end finesse to back-end expertise, I&apos;ve got you covered.
@@ -58,7 +58,11 @@ const Home = () => {
           <div className="right-panel col-12 col-md-6">
             {/* profile image */}
             <div className="profile-image-square-container">
-              <Image src={ProfilePictureSquare} alt="Profile Picture" />
+              <Image
+                src={ProfilePictureSquare}
+                alt="Profile Picture"
+                priority={true}
+              />
             </div>
           </div>
         </div>
@@ -66,7 +70,7 @@ const Home = () => {
 
       {/* big side profile image */}
       <div className="big-profile-image-container">
-        <Image src={ProfilePicture} alt="Profile Picture" />
+        <Image src={ProfilePicture} alt="Profile Picture" priority={true} />
       </div>
 
       {/* circle */}

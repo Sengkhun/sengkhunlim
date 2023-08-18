@@ -78,7 +78,7 @@ const Qualification = () => {
             <AnimatedTimeline
               key={timelineIdx}
               animated={visibleQualification && activeTab === timelineIdx}
-              delay={timelineIdx === 0 ? 1000 : 300}
+              delay={timelineIdx === 0 ? 1000 : 200}
               timeline={timeline}
             />
           </div>

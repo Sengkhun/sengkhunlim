@@ -47,7 +47,7 @@
       min-width: 100px;
       max-width: 350px;
       aspect-ratio: 1;
-      overflow: hidden;
+      overflow: clip;
       border-radius: 50%;
       background-color: color(primary);
       margin-bottom: 2rem;
@@ -55,6 +55,7 @@
       img {
         height: 100%;
         width: auto;
+        overflow: clip;
       }
     }
   }
@@ -67,12 +68,12 @@
     top: 0;
     bottom: 0;
     left: 55%;
-    border-radius: 50%;
 
     img {
       position: relative;
       height: 85%;
       width: auto;
+      overflow: clip;
     }
   }
 
@@ -414,7 +415,6 @@
         justify-content: center;
         align-items: center;
         margin: 1.3rem;
-        overflow: visible;
         text-decoration: none;
 
         &:hover {
@@ -426,7 +426,6 @@
           cursor: pointer;
           height: 80px;
           width: auto;
-          overflow: visible !important;
         }
 
         span {

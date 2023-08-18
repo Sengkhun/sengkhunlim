@@ -104,11 +104,14 @@ const MainNavbar = () => {
 
   const handleActiveNavSection = useCallback(
     (currentScrollPos: number) => {
-      for (let index = 0; index < listSectionsRef.current.length; index++) {
+      const length = listSectionsRef.current.length;
+      for (let index = 0; index < length; index++) {
         const section = listSectionsRef.current[index];
         if (
           currentScrollPos + sectionAnimationOffsetRef.current > section.top &&
-          currentScrollPos + sectionAnimationOffsetRef.current < section.bottom
+          (currentScrollPos + sectionAnimationOffsetRef.current <
+            section.bottom ||
+            index === length - 1)
         ) {
           dispatch(setSectionVisible(section.id));
         }
@@ -224,7 +227,7 @@ const MainNavbar = () => {
           <div className="container">
             {/* logo */}
             <Link className="logo-container" href="/#home">
-              <Image src={logo} alt="Logo" className="logo" />
+              <Image src={logo} alt="Logo" className="logo" priority={true} />
               <span>Khun</span>
             </Link>
 
@@ -306,17 +309,18 @@ const MainNavbar = () => {
               </div>
               <ul className="navbar-menu">
                 {navbarOptions.map((item, idx) => (
-                  <a
-                    key={idx}
-                    href={item.href}
-                    className={`nav-item ${
-                      currentSection?.id === item.href ? "active" : ""
-                    }`}
-                    onClick={() => onCloseMobileNav(item.title)}
-                  >
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </a>
+                  <li key={idx}>
+                    <a
+                      href={item.href}
+                      className={`nav-item ${
+                        currentSection?.id === item.href ? "active" : ""
+                      }`}
+                      onClick={() => onCloseMobileNav(item.title)}
+                    >
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </a>
+                  </li>
                 ))}
               </ul>
             </div>

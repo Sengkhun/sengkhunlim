@@ -12,7 +12,7 @@ const MainNavbar = () => {
           <div className="container">
             {/* logo */}
             <Link className="logo-container pt-2 pb-2" href="/#home">
-              <Image src={logo} alt="Logo" className="logo " />
+              <Image src={logo} alt="Logo" className="logo" priority={true} />
               <span>Khun</span>
             </Link>
           </div>

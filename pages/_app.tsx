@@ -47,22 +47,23 @@ const MyApp = ({ Component, ...rest }: AppProps) => {
 
         {/* additional tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        {/* structured data */}
-        <script
-          key="structured-data"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "http://schema.org",
-              "@type": "Person",
-              name: "Sengkhun Lim",
-              alternateName: ["Khun", "Sengkhun", "SK"],
-              url: "https://sengkhun.com/",
-            }),
-          }}
-        />
       </Head>
+
+      {/* structured data */}
+      <Script
+        id="structured-data"
+        key="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "http://schema.org",
+            "@type": "Person",
+            name: "Sengkhun Lim",
+            alternateName: ["Khun", "Sengkhun", "SK"],
+            url: "https://sengkhun.com/",
+          }),
+        }}
+      />
 
       {/* bootstrap */}
       <Script

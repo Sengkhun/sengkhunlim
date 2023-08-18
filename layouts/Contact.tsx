@@ -198,6 +198,16 @@ const Contact = () => {
       setLoading(false);
 
       if (response.ok) {
+        // scroll to top of contact section
+        const contactSection = document.querySelector("#contact");
+        if (contactSection) {
+          contactSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+
+        // hide the form and show thanks prompt
         setIsSubmitted(true);
       } else {
         setErrorMessages({
@@ -266,6 +276,7 @@ const Contact = () => {
                   <div className="form-floating col-12 col-md-6">
                     <input
                       ref={firstNameInputRef}
+                      id="firstName"
                       name="firstName"
                       type="text"
                       className="form-control"
@@ -274,7 +285,7 @@ const Contact = () => {
                       onChange={onTextChange(setFirstName)}
                       onKeyDown={onKeyDown("firstName")}
                     />
-                    <label>First name</label>
+                    <label htmlFor="firstName">First name</label>
 
                     {/* error validation message */}
                     {errorMessages.firstName ? (
@@ -288,6 +299,7 @@ const Contact = () => {
                   <div className="form-floating col-12 col-md-6">
                     <input
                       ref={lastNameInputRef}
+                      id="lastName"
                       name="lastName"
                       type="text"
                       className="form-control"
@@ -296,7 +308,7 @@ const Contact = () => {
                       onChange={onTextChange(setLastName)}
                       onKeyDown={onKeyDown("lastName")}
                     />
-                    <label>Last name</label>
+                    <label htmlFor="lastName">Last name</label>
 
                     {/* error validation message */}
                     {errorMessages.lastName ? (
@@ -312,6 +324,7 @@ const Contact = () => {
                   <div className="form-floating col-12">
                     <input
                       ref={emailInputRef}
+                      id="email"
                       name="email"
                       type="email"
                       autoComplete="on"
@@ -321,7 +334,7 @@ const Contact = () => {
                       onChange={onTextChange(setEmail)}
                       onKeyDown={onKeyDown("email")}
                     />
-                    <label>Email</label>
+                    <label htmlFor="email">Email</label>
 
                     {/* error validation message */}
                     {errorMessages.email ? (
@@ -337,6 +350,7 @@ const Contact = () => {
                   <div className="form-floating col-12">
                     <textarea
                       ref={messageInputRef}
+                      id="message"
                       name="message"
                       className="form-control"
                       disabled={loading}
@@ -346,7 +360,7 @@ const Contact = () => {
                       onChange={onTextAreaChange(setMessage)}
                       onKeyDown={onKeyDown("message")}
                     />
-                    <label>Message</label>
+                    <label htmlFor="message">Message</label>
 
                     <div className="text-area-footer-container">
                       {/* error validation message */}
