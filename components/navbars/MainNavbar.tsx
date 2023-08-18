@@ -294,7 +294,9 @@ const MainNavbar = () => {
 
               {/* render for small screen */}
               {currentBreakpoint == "sm" && (
-                <RiMenu3Fill onClick={onOpenMobileNav} />
+                <li>
+                  <RiMenu3Fill onClick={onOpenMobileNav} />
+                </li>
               )}
             </ul>
           </div>
