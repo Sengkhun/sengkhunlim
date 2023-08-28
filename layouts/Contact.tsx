@@ -198,6 +198,9 @@ const Contact = () => {
       setLoading(false);
 
       if (response.ok) {
+        // hide the form and show thanks prompt
+        setIsSubmitted(true);
+
         // scroll to top of contact section
         const contactSection = document.querySelector("#contact");
         if (contactSection) {
@@ -206,9 +209,6 @@ const Contact = () => {
             block: "start",
           });
         }
-
-        // hide the form and show thanks prompt
-        setIsSubmitted(true);
       } else {
         setErrorMessages({
           ...errorMessages,

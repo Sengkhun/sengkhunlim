@@ -16,6 +16,7 @@ import { RiMenu3Fill } from "react-icons/ri";
 import { BiArrowToTop } from "react-icons/bi";
 import ReactGA from "react-ga4";
 import { useDispatch } from "react-redux";
+import { useResize, useScroll } from "@react-spring/web";
 
 import logo from "../../public/logos/web-logo-only.png";
 import { BREAK_POINTS, GA_CATEGORIES } from "../../utils/constant";
@@ -53,6 +54,75 @@ const MainNavbar = () => {
   const listSectionsRef = useRef<sectionAttributes[]>([]);
   const activeNavOffsetRef = useRef<number>(0);
   const sectionAnimationOffsetRef = useRef<number>(0);
+
+  useEffect(() => {
+    var prevWidth = window.innerWidth;
+    if (prevWidth < BREAK_POINTS.md) {
+      setBreakpoint("sm");
+    } else if (prevWidth < BREAK_POINTS.lg) {
+      setBreakpoint("md");
+    } else {
+      setBreakpoint("lg");
+    }
+
+    // get list of sections' size and id
+    listSectionsRef.current = handleListSections();
+
+    // handle initial active nav section
+    handleActiveNavSection();
+  }, []);
+
+  // highlight the menu while scrolling
+  useScroll({
+    onChange: ({ value: { scrollY } }) => {
+      var minHeighToDisplay = 300;
+      if (navRef) {
+        const navHeight = navRef.current?.clientHeight || 0;
+
+        // handle navbar shadow
+        if (scrollY < navHeight) {
+          navRef.current?.classList.remove("nav-shadow");
+        } else if (!navRef.current?.classList.contains("nav-shadow")) {
+          navRef.current?.classList.add("nav-shadow");
+        }
+
+        // handle nav active class
+        handleActiveNavSection();
+      }
+
+      // handle arrow to top
+      if (ArrowTopRef.current) {
+        const classList = ArrowTopRef.current.classList;
+        if (scrollY < minHeighToDisplay) {
+          if (classList?.contains("fade-in")) {
+            ArrowTopRef.current.classList.remove("fade-in");
+            ArrowTopRef.current.classList.add("fade-out");
+          }
+        } else {
+          if (classList.contains("fade-out")) {
+            ArrowTopRef.current.classList.remove("fade-out");
+            ArrowTopRef.current.classList.add("fade-in");
+          }
+        }
+      }
+    },
+  });
+
+  useResize({
+    onChange: ({ value: { width } }) => {
+      const currentWidth = width;
+      if (currentWidth < BREAK_POINTS.md) {
+        setBreakpoint("sm");
+      } else if (currentWidth < BREAK_POINTS.lg) {
+        setBreakpoint("md");
+      } else {
+        setBreakpoint("lg");
+      }
+
+      // get new list of sections' size and id
+      listSectionsRef.current = handleListSections();
+    },
+  });
 
   const onOpenMobileNav = () => {
     if (navMobileRef.current) {
@@ -102,106 +172,28 @@ const MainNavbar = () => {
     return listSections;
   };
 
-  const handleActiveNavSection = useCallback(
-    (currentScrollPos: number) => {
-      const length = listSectionsRef.current.length;
-      for (let index = 0; index < length; index++) {
-        const section = listSectionsRef.current[index];
-        if (
-          currentScrollPos + sectionAnimationOffsetRef.current > section.top &&
-          (currentScrollPos + sectionAnimationOffsetRef.current <
-            section.bottom ||
-            index === length - 1)
-        ) {
-          dispatch(setSectionVisible(section.id));
-        }
-
-        if (
-          currentScrollPos + activeNavOffsetRef.current > section.top &&
-          currentScrollPos + activeNavOffsetRef.current < section.bottom
-        ) {
-          setCurrentSection(section);
-        }
+  const handleActiveNavSection = useCallback(() => {
+    const currentScrollPos = window.scrollY;
+    const length = listSectionsRef.current.length;
+    for (let index = 0; index < length; index++) {
+      const section = listSectionsRef.current[index];
+      if (
+        currentScrollPos + sectionAnimationOffsetRef.current > section.top &&
+        (currentScrollPos + sectionAnimationOffsetRef.current <
+          section.bottom ||
+          index === length - 1)
+      ) {
+        dispatch(setSectionVisible(section.id));
       }
-    },
-    [dispatch]
-  );
 
-  useEffect(() => {
-    var windowHeight = window.innerHeight;
-    var prevWidth = window.innerWidth;
-    if (prevWidth < BREAK_POINTS.md) {
-      setBreakpoint("sm");
-    } else if (prevWidth < BREAK_POINTS.lg) {
-      setBreakpoint("md");
-    } else {
-      setBreakpoint("lg");
+      if (
+        currentScrollPos + activeNavOffsetRef.current > section.top &&
+        currentScrollPos + activeNavOffsetRef.current < section.bottom
+      ) {
+        setCurrentSection(section);
+      }
     }
-
-    // get list of sections' size and id
-    listSectionsRef.current = handleListSections();
-
-    // handle initial active nav section
-    handleActiveNavSection(window.scrollY);
-
-    window.onresize = throttle(() => {
-      const currentWidth = window.innerWidth;
-      if (currentWidth < BREAK_POINTS.md) {
-        setBreakpoint("sm");
-      } else if (currentWidth < BREAK_POINTS.lg) {
-        setBreakpoint("md");
-      } else {
-        setBreakpoint("lg");
-      }
-
-      if (windowHeight != window.innerHeight) {
-        // update height
-        windowHeight = window.innerHeight;
-      }
-
-      // get new list of sections' size and id
-      listSectionsRef.current = handleListSections();
-    }, 500);
-
-    var minHeighToDisplay = 300;
-    window.onscroll = throttle(() => {
-      const currentScrollPos = window.scrollY;
-      if (navRef) {
-        const navHeight = navRef.current?.clientHeight || 0;
-
-        // handle navbar shadow
-        if (currentScrollPos < navHeight) {
-          navRef.current?.classList.remove("nav-shadow");
-        } else if (!navRef.current?.classList.contains("nav-shadow")) {
-          navRef.current?.classList.add("nav-shadow");
-        }
-
-        // handle nav active class
-        handleActiveNavSection(window.scrollY);
-      }
-
-      // handle arrow to top
-      if (ArrowTopRef.current) {
-        const classList = ArrowTopRef.current.classList;
-        if (currentScrollPos < minHeighToDisplay) {
-          if (classList?.contains("fade-in")) {
-            ArrowTopRef.current.classList.remove("fade-in");
-            ArrowTopRef.current.classList.add("fade-out");
-          }
-        } else {
-          if (classList.contains("fade-out")) {
-            ArrowTopRef.current.classList.remove("fade-out");
-            ArrowTopRef.current.classList.add("fade-in");
-          }
-        }
-      }
-    }, 500);
-
-    return () => {
-      window.onscroll = null;
-      window.onresize = null;
-    };
-  }, [handleActiveNavSection]);
+  }, [dispatch]);
 
   const onNavClick = (title: string) => {
     // send GA event
