@@ -56,7 +56,7 @@ const MyApp = ({ Component, ...rest }: AppProps) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            "@context": "http://schema.org",
+            "@context": "https://schema.org",
             "@type": "Person",
             name: "Sengkhun Lim",
             alternateName: ["Khun", "Sengkhun", "SK"],
