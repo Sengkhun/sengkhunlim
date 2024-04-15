@@ -77,8 +77,8 @@ export const QUALIFICATION_TIMELINES = {
       year: "July 2021 - present",
     },
     {
-      title: "Full Stack Project Lead Developer",
-      subtitle: "TK CAPITAL PLC., Cambodia",
+      title: "Lead Full Stack Developer",
+      subtitle: "BLOC, Cambodia",
       year: "Aug 2018 - Jan 2020",
     },
     {
