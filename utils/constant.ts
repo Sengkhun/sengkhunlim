@@ -96,12 +96,7 @@ export const QUALIFICATION_TIMELINES = {
     {
       title: "Master's degree in Information Technology",
       subtitle: "University of South Australia, Australia",
-      year: "Jul 2020 -  Nov 2021",
-    },
-    {
-      title: "Graduate Certificate in Information Technology",
-      subtitle: "University of South Australia, Australia",
-      year: "Mar 2020 - Jul 2020",
+      year: "Mar 2020 -  Nov 2021",
     },
     {
       title: "Bachelor's degree in Computer Science",
@@ -121,14 +116,9 @@ export const QUALIFICATION_TIMELINES = {
       year: "Jul 2019",
     },
     {
-      title: "Winner of SmartStart Cycle 1 Grand Final",
+      title: "Winner of SmartStart Program Grand Final",
       subtitle: "Smart Axiata, Cambodia",
       year: "Jan 2018",
-    },
-    {
-      title: "Winner of the SmartStart Young Innovator Program",
-      subtitle: "Smart Axiata, Cambodia",
-      year: "May 2017",
     },
   ],
 };
