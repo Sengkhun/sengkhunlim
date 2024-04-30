@@ -66,7 +66,7 @@ const About = (props: AboutProps) => {
           </div>
           <div className="inner-container">
             <div className="animated-number">
-              <AnimatedNumber number={12} animated={visibleAbout} />+
+              <AnimatedNumber number={15} animated={visibleAbout} />+
             </div>
             <span>Completed projects</span>
           </div>
